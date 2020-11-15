@@ -74,7 +74,7 @@ fully interact with the map with the identity-key wrapping performed on-the-fly 
 )</pre>
 
 ## Alternatives
-* [Google Guava](https://github.com/google/guava) - Provides *one-way* transform views of the most common collections
+* [Google Guava](https://github.com/google/guava) - Provides **one-way** transform views of the most common collections
   types in the [com.google.common.collect](https://guava.dev/releases/19.0/api/docs/com/google/common/collect/package-summary.html)
   package.
 
