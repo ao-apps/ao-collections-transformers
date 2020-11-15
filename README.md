@@ -65,8 +65,8 @@ fully interact with the map with the identity-key wrapping performed on-the-fly 
 <pre>TransformMap.of(
 	new LinkedHashMap&lt;&gt;(),
 	new FunctionalTransformer&lt;&gt;(
-		Savepoint.class,
-		(Class&lt;IdentityKey&lt;Savepoint&gt;&gt;)(Class)IdentityKey.class,
+		SomeKeyType.class,
+		(Class&lt;IdentityKey&lt;SomeKeyType&gt;&gt;)(Class)IdentityKey.class,
 		IdentityKey::of,
 		IdentityKey::getValue
 	),

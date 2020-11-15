@@ -105,8 +105,8 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 <pre>TransformMap.of(
 	new LinkedHashMap&lt;&gt;(),
 	new FunctionalTransformer&lt;&gt;(
-		Savepoint.class,
-		(Class&lt;IdentityKey&lt;Savepoint&gt;&gt;)(Class)IdentityKey.class,
+		SomeKeyType.class,
+		(Class&lt;IdentityKey&lt;SomeKeyType&gt;&gt;)(Class)IdentityKey.class,
 		IdentityKey::of,
 		IdentityKey::getValue
 	),
