@@ -41,7 +41,7 @@ creations everywhere: submarine navigating the depths of the bathtub, motorized 
 steep grass hill, airplane flying in the wind outside the car window, hydroplane skimming across the summer lake.
 They were the best.
 
-Then I found computers.  Computers were my absolute favorite.  I played with them for years.  I will play with them.
+Then I found computers.  Computers were my absolute favorite.  I played with them for years.  I still play with them.
 They are the best.
 
 Now, as a superficially responsible adult, I like to be able to compose software as I would build with LEGO®.  Toward
