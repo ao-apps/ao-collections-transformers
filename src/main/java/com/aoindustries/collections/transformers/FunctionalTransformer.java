@@ -27,7 +27,8 @@ import java.util.function.Function;
 /**
  * @author  AO Industries, Inc.
  */
-// TODO: Add a one-way transformer that uses a single function and does not support iversion (and would thus fail most/all modifications)
+// TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
+//       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
 public class FunctionalTransformer<E,W> extends AbstractTransformer<E,W> {
 
 	protected final Function<? super E,? extends W> toWrapped;
