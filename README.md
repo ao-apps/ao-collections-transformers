@@ -62,7 +62,7 @@ The solution is a bi-directional transformation through
 [IdentityKey](https://aoindustries.com/ao-collections/apidocs/com/aoindustries/collections/IdentityKey.html) on top of
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html).  We can now add/remove objects and
 fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
-<pre>TransformMap.of(
+<pre>Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(
 	new LinkedHashMap&lt;&gt;(),
 	new FunctionalTransformer&lt;&gt;(
 		SomeKeyType.class,

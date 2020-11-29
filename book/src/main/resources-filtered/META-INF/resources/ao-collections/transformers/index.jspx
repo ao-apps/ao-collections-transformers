@@ -35,7 +35,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		shortTitle="@{documented.shortTitle}"
 		description="@{documented.description}"
 		datePublished="2020-11-14T18:17:19-06:00"
-		dateModified="2020-11-29T01:04:05-06:00"
+		dateModified="2020-11-29T01:21:03-06:00"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="apidocs/index.jspx" />
@@ -103,7 +103,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 				<ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a>.  We can now add/remove objects and
 				fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
 			</p>
-<pre>TransformMap.of(
+<pre><![CDATA[Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(
 	new LinkedHashMap&lt;&gt;(),
 	new FunctionalTransformer&lt;&gt;(
 		SomeKeyType.class,
@@ -112,7 +112,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		IdentityKey::getValue
 	),
 	Transformer.identity()
-)</pre>
+)]]></pre>
 		</section:section>
 		<section:aside label="Alternatives">
 			<ul>
