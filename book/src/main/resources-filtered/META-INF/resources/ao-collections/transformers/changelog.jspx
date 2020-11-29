@@ -37,6 +37,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2020-11-14T18:17:19-06:00"
+		dateModified="2020-11-29T01:08:11-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-collections-transformers:pom.version}" />
@@ -51,14 +52,23 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 				groupId="@{project.groupId}"
 				artifactId="@{documented.artifactId}"
 				scmUrl="@{project.scm.url}"
-			>
-				<ul>
-					<li>
-						New project that provides a set of bi-directional Java collections wrappers that transform objects
-						both to and from on-the-fly.
-					</li>
-				</ul>
-			</changelog:release>
+			/>
 		</c:if>
+
+		<changelog:release
+			projectName="@{documented.name}"
+			version="1.0.0"
+			datePublished="2020-11-29T01:08:11-06:00"
+			groupId="@{project.groupId}"
+			artifactId="@{documented.artifactId}"
+			scmUrl="@{project.scm.url}"
+		>
+			<ul>
+				<li>
+					New project that provides a set of bi-directional Java collections wrappers that transform objects
+					both to and from on-the-fly.
+				</li>
+			</ul>
+		</changelog:release>
 	</core:page>
 </jsp:root>
