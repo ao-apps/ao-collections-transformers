@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,12 +29,12 @@ import java.util.ListIterator;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformListIterator<E,W> extends TransformIterator<E,W> implements ListIterator<E> {
+public class TransformListIterator<E, W> extends TransformIterator<E, W> implements ListIterator<E> {
 
 	/**
 	 * Wraps a list iterator.
 	 */
-	public static <E,W> TransformListIterator<E,W> of(ListIterator<W> wrapped, Transformer<E,W> transformer) {
+	public static <E, W> TransformListIterator<E, W> of(ListIterator<W> wrapped, Transformer<E, W> transformer) {
 		return (wrapped == null) ? null : new TransformListIterator<>(wrapped, transformer);
 	}
 
@@ -42,11 +42,11 @@ public class TransformListIterator<E,W> extends TransformIterator<E,W> implement
 	 * @see  #of(java.util.ListIterator, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformListIterator<E,E> of(ListIterator<E> wrapped) {
+	public static <E> TransformListIterator<E, E> of(ListIterator<E> wrapped) {
 		return of(wrapped, Transformer.identity());
 	}
 
-	protected TransformListIterator(ListIterator<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformListIterator(ListIterator<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 

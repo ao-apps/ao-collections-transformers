@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,7 +30,7 @@ import java.util.SortedMap;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> implements SortedMap<K,V> {
+public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW> implements SortedMap<K, V> {
 
 	/**
 	 * Wraps a sorted map.
@@ -40,13 +40,13 @@ public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> imple
 	 *
 	 * @see  TransformNavigableMap#of(java.util.NavigableMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <K,V,KW,VW> TransformSortedMap<K,V,KW,VW> of(
-		SortedMap<KW,VW> map,
-		Transformer<K,KW> keyTransformer,
-		Transformer<V,VW> valueTransformer
+	public static <K, V, KW, VW> TransformSortedMap<K, V, KW, VW> of(
+		SortedMap<KW, VW> map,
+		Transformer<K, KW> keyTransformer,
+		Transformer<V, VW> valueTransformer
 	) {
 		if(map instanceof NavigableMap) {
-			return TransformNavigableMap.of((NavigableMap<KW,VW>)map, keyTransformer, valueTransformer);
+			return TransformNavigableMap.of((NavigableMap<KW, VW>)map, keyTransformer, valueTransformer);
 		}
 		return (map == null) ? null : new TransformSortedMap<>(map, keyTransformer, valueTransformer);
 	}
@@ -55,24 +55,24 @@ public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> imple
 	 * @see  #of(java.util.SortedMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <K,V> TransformSortedMap<K,V,K,V> of(SortedMap<K,V> map) {
+	public static <K, V> TransformSortedMap<K, V, K, V> of(SortedMap<K, V> map) {
 		return of(map, Transformer.identity(), Transformer.identity());
 	}
 
-	protected TransformSortedMap(SortedMap<KW,VW> wrapped, Transformer<K,KW> keyTransformer, Transformer<V,VW> valueTransformer) {
+	protected TransformSortedMap(SortedMap<KW, VW> wrapped, Transformer<K, KW> keyTransformer, Transformer<V, VW> valueTransformer) {
 		super(wrapped, keyTransformer, valueTransformer);
 	}
 
 	@Override
-	protected SortedMap<KW,VW> getWrapped() {
-		return (SortedMap<KW,VW>)super.getWrapped();
+	protected SortedMap<KW, VW> getWrapped() {
+		return (SortedMap<KW, VW>)super.getWrapped();
 	}
 
-	private TransformComparator<K,KW> comparator;
+	private TransformComparator<K, KW> comparator;
 
 	@Override
-	public TransformComparator<K,KW> comparator() {
-		TransformComparator<K,KW> c = comparator;
+	public TransformComparator<K, KW> comparator() {
+		TransformComparator<K, KW> c = comparator;
 		if(c == null) {
 			c = TransformComparator.of(getWrapped().comparator(), keyTransformer);
 			comparator = c;
@@ -81,7 +81,7 @@ public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> imple
 	}
 
 	@Override
-	public TransformSortedMap<K,V,KW,VW> subMap(K fromKey, K toKey) {
+	public TransformSortedMap<K, V, KW, VW> subMap(K fromKey, K toKey) {
 		return of(getWrapped().subMap(
 				keyTransformer.toWrapped(fromKey),
 				keyTransformer.toWrapped(toKey)
@@ -92,7 +92,7 @@ public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> imple
 	}
 
 	@Override
-	public TransformSortedMap<K,V,KW,VW> headMap(K toKey) {
+	public TransformSortedMap<K, V, KW, VW> headMap(K toKey) {
 		return of(getWrapped().headMap(
 				keyTransformer.toWrapped(toKey)
 			),
@@ -102,7 +102,7 @@ public class TransformSortedMap<K,V,KW,VW> extends TransformMap<K,V,KW,VW> imple
 	}
 
 	@Override
-	public TransformSortedMap<K,V,KW,VW> tailMap(K fromKey) {
+	public TransformSortedMap<K, V, KW, VW> tailMap(K fromKey) {
 		return of(getWrapped().tailMap(
 				keyTransformer.toWrapped(fromKey)
 			),

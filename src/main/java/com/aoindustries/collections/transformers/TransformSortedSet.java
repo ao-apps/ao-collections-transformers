@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,7 +30,7 @@ import java.util.SortedSet;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformSortedSet<E,W> extends TransformSet<E,W> implements SortedSet<E> {
+public class TransformSortedSet<E, W> extends TransformSet<E, W> implements SortedSet<E> {
 
 	/**
 	 * Wraps a sorted set.
@@ -40,7 +40,7 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 	 *
 	 * @see  TransformNavigableSet#of(java.util.NavigableSet, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformSortedSet<E,W> of(SortedSet<W> set, Transformer<E,W> transformer) {
+	public static <E, W> TransformSortedSet<E, W> of(SortedSet<W> set, Transformer<E, W> transformer) {
 		if(set instanceof NavigableSet) {
 			return TransformNavigableSet.of((NavigableSet<W>)set, transformer);
 		}
@@ -51,11 +51,11 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 	 * @see  #of(java.util.SortedSet, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformSortedSet<E,E> of(SortedSet<E> set) {
+	public static <E> TransformSortedSet<E, E> of(SortedSet<E> set) {
 		return of(set, Transformer.identity());
 	}
 
-	protected TransformSortedSet(SortedSet<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformSortedSet(SortedSet<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 
@@ -64,11 +64,11 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 		return (SortedSet<W>)super.getWrapped();
 	}
 
-	private TransformComparator<E,W> comparator;
+	private TransformComparator<E, W> comparator;
 
 	@Override
-	public TransformComparator<E,W> comparator() {
-		TransformComparator<E,W> c = comparator;
+	public TransformComparator<E, W> comparator() {
+		TransformComparator<E, W> c = comparator;
 		if(c == null) {
 			c = TransformComparator.of(getWrapped().comparator(), transformer);
 			comparator = c;
@@ -77,7 +77,7 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 	}
 
 	@Override
-	public TransformSortedSet<E,W> subSet(E fromElement, E toElement) {
+	public TransformSortedSet<E, W> subSet(E fromElement, E toElement) {
 		return of(getWrapped().subSet(
 				transformer.toWrapped(fromElement),
 				transformer.toWrapped(toElement)
@@ -87,7 +87,7 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 	}
 
 	@Override
-	public TransformSortedSet<E,W> headSet(E toElement) {
+	public TransformSortedSet<E, W> headSet(E toElement) {
 		return of(getWrapped().headSet(
 				transformer.toWrapped(toElement)
 			),
@@ -96,7 +96,7 @@ public class TransformSortedSet<E,W> extends TransformSet<E,W> implements Sorted
 	}
 
 	@Override
-	public TransformSortedSet<E,W> tailSet(E fromElement) {
+	public TransformSortedSet<E, W> tailSet(E fromElement) {
 		return of(getWrapped().tailSet(
 				transformer.toWrapped(fromElement)
 			),

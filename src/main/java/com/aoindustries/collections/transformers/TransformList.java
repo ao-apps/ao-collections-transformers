@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -34,7 +34,7 @@ import java.util.function.UnaryOperator;
  * @author  AO Industries, Inc.
  */
 @SuppressWarnings("EqualsAndHashcode")
-public class TransformList<E,W> extends TransformCollection<E,W> implements List<E> {
+public class TransformList<E, W> extends TransformCollection<E, W> implements List<E> {
 
 	/**
 	 * Wraps a list.
@@ -42,7 +42,7 @@ public class TransformList<E,W> extends TransformCollection<E,W> implements List
 	 * <li>If the given list implements {@link RandomAccess}, then the returned list will also implement {@link RandomAccess}.</li>
 	 * </ol>
 	 */
-	public static <E,W> TransformList<E,W> of(List<W> list, Transformer<E,W> transformer) {
+	public static <E, W> TransformList<E, W> of(List<W> list, Transformer<E, W> transformer) {
 		if(list instanceof RandomAccess) {
 			return new TransformList_RandomAccess<>(list, transformer);
 		}
@@ -53,11 +53,11 @@ public class TransformList<E,W> extends TransformCollection<E,W> implements List
 	 * @see  #of(java.util.List, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformList<E,E> of(List<E> list) {
+	public static <E> TransformList<E, E> of(List<E> list) {
 		return of(list, Transformer.identity());
 	}
 
-	protected TransformList(List<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformList(List<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 
@@ -130,24 +130,24 @@ public class TransformList<E,W> extends TransformCollection<E,W> implements List
 	}
 
 	@Override
-	public TransformListIterator<E,W> listIterator() {
+	public TransformListIterator<E, W> listIterator() {
 		return TransformListIterator.of(getWrapped().listIterator(), transformer);
 	}
 
 	@Override
-	public TransformListIterator<E,W> listIterator(int index) {
+	public TransformListIterator<E, W> listIterator(int index) {
 		return TransformListIterator.of(getWrapped().listIterator(index), transformer);
 	}
 
 	@Override
-	public TransformList<E,W> subList(int fromIndex, int toIndex) {
+	public TransformList<E, W> subList(int fromIndex, int toIndex) {
 		return of(getWrapped().subList(fromIndex, toIndex), transformer);
 	}
 
 	// TODO: spliterator()?
 
-	private static class TransformList_RandomAccess<E,W> extends TransformList<E,W> implements RandomAccess {
-		private TransformList_RandomAccess(List<W> wrapped, Transformer<E,W> transformer) {
+	private static class TransformList_RandomAccess<E, W> extends TransformList<E, W> implements RandomAccess {
+		private TransformList_RandomAccess(List<W> wrapped, Transformer<E, W> transformer) {
 			super(wrapped, transformer);
 		}
 	}

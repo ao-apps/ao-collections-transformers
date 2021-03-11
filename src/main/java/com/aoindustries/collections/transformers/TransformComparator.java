@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,12 +29,12 @@ import java.util.Comparator;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformComparator<T,W> implements Comparator<T> {
+public class TransformComparator<T, W> implements Comparator<T> {
 
 	/**
 	 * Wraps a comparator.
 	 */
-	public static <T,W> TransformComparator<T,W> of(Comparator<? super W> comparator, Transformer<T,W> transformer) {
+	public static <T, W> TransformComparator<T, W> of(Comparator<? super W> comparator, Transformer<T, W> transformer) {
 		return (comparator == null) ? null : new TransformComparator<>(comparator, transformer);
 	}
 
@@ -42,14 +42,14 @@ public class TransformComparator<T,W> implements Comparator<T> {
 	 * @see  #of(java.util.Comparator, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <T> TransformComparator<T,T> of(Comparator<? super T> comparator) {
+	public static <T> TransformComparator<T, T> of(Comparator<? super T> comparator) {
 		return of(comparator, Transformer.identity());
 	}
 
 	private final Comparator<? super W> wrapped;
-	protected final Transformer<T,W> transformer;
+	protected final Transformer<T, W> transformer;
 
-	protected TransformComparator(Comparator<? super W> wrapped, Transformer<T,W> transformer) {
+	protected TransformComparator(Comparator<? super W> wrapped, Transformer<T, W> transformer) {
 		this.wrapped = wrapped;
 		this.transformer = transformer;
 	}

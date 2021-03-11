@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,10 +29,10 @@ import java.util.function.Function;
  */
 // TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
 //       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
-public class FunctionalTransformer<E,W> extends AbstractTransformer<E,W> {
+public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
 
-	protected final Function<? super E,? extends W> toWrapped;
-	protected final Function<? super W,? extends E> fromWrapped;
+	protected final Function<? super E, ? extends W> toWrapped;
+	protected final Function<? super W, ? extends E> fromWrapped;
 
 	/**
 	 * @param eClass The wrapper type
@@ -43,8 +43,8 @@ public class FunctionalTransformer<E,W> extends AbstractTransformer<E,W> {
 	public FunctionalTransformer(
 		Class<E> eClass,
 		Class<W> wClass,
-		Function<? super E,? extends W> toWrapped,
-		Function<? super W,? extends E> fromWrapped
+		Function<? super E, ? extends W> toWrapped,
+		Function<? super W, ? extends E> fromWrapped
 	) {
 		super(eClass, wClass);
 		this.toWrapped = toWrapped;
@@ -60,9 +60,9 @@ public class FunctionalTransformer<E,W> extends AbstractTransformer<E,W> {
 	FunctionalTransformer(
 		Class<E> eClass,
 		Class<W> wClass,
-		Function<? super E,? extends W> toWrapped,
-		Function<? super W,? extends E> fromWrapped,
-		AbstractTransformer<W,E> inverted
+		Function<? super E, ? extends W> toWrapped,
+		Function<? super W, ? extends E> fromWrapped,
+		AbstractTransformer<W, E> inverted
 	) {
 		super(eClass, wClass, inverted);
 		this.toWrapped = toWrapped;

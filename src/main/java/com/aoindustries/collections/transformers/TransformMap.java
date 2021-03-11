@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -34,7 +34,7 @@ import java.util.function.Function;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformMap<K,V,KW,VW> implements Map<K,V> {
+public class TransformMap<K, V, KW, VW> implements Map<K, V> {
 
 	/**
 	 * Wraps a map.
@@ -44,13 +44,13 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 	 *
 	 * @see  TransformSortedMap#of(java.util.SortedMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <K,V,KW,VW> TransformMap<K,V,KW,VW> of(
-		Map<KW,VW> map,
-		Transformer<K,KW> keyTransformer,
-		Transformer<V,VW> valueTransformer
+	public static <K, V, KW, VW> TransformMap<K, V, KW, VW> of(
+		Map<KW, VW> map,
+		Transformer<K, KW> keyTransformer,
+		Transformer<V, VW> valueTransformer
 	) {
 		if(map instanceof SortedMap) {
-			return TransformSortedMap.of((SortedMap<KW,VW>)map, keyTransformer, valueTransformer);
+			return TransformSortedMap.of((SortedMap<KW, VW>)map, keyTransformer, valueTransformer);
 		}
 		return (map == null) ? null : new TransformMap<>(map, keyTransformer, valueTransformer);
 	}
@@ -59,22 +59,22 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 	 * @see  #of(java.util.Map, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <K,V> TransformMap<K,V,K,V> of(Map<K,V> map) {
+	public static <K, V> TransformMap<K, V, K, V> of(Map<K, V> map) {
 		return of(map, Transformer.identity(), Transformer.identity());
 	}
 
-	private final Map<KW,VW> wrapped;
-	protected final Transformer<K,KW> keyTransformer;
-	protected final Transformer<V,VW> valueTransformer;
+	private final Map<KW, VW> wrapped;
+	protected final Transformer<K, KW> keyTransformer;
+	protected final Transformer<V, VW> valueTransformer;
 
-	protected TransformMap(Map<KW,VW> wrapped, Transformer<K,KW> keyTransformer, Transformer<V,VW> valueTransformer) {
+	protected TransformMap(Map<KW, VW> wrapped, Transformer<K, KW> keyTransformer, Transformer<V, VW> valueTransformer) {
 		this.wrapped = wrapped;
 		this.keyTransformer = keyTransformer;
 		this.valueTransformer = valueTransformer;
 	}
 
 	@SuppressWarnings("ReturnOfCollectionOrArrayField")
-	protected Map<KW,VW> getWrapped() {
+	protected Map<KW, VW> getWrapped() {
 		return wrapped;
 	}
 
@@ -120,8 +120,8 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public void putAll(Map<? extends K,? extends V> m) {
-		getWrapped().putAll(of((Map<K,V>)m, keyTransformer.invert(), valueTransformer.invert())
+	public void putAll(Map<? extends K, ? extends V> m) {
+		getWrapped().putAll(of((Map<K, V>)m, keyTransformer.invert(), valueTransformer.invert())
 		);
 	}
 
@@ -130,11 +130,11 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 		getWrapped().clear();
 	}
 
-	private TransformSet<K,KW> keySet;
+	private TransformSet<K, KW> keySet;
 
 	@Override
-	public TransformSet<K,KW> keySet() {
-		TransformSet<K,KW> ks = keySet;
+	public TransformSet<K, KW> keySet() {
+		TransformSet<K, KW> ks = keySet;
 		if(ks == null) {
 			ks = TransformSet.of(getWrapped().keySet(), keyTransformer);
 			keySet = ks;
@@ -142,11 +142,11 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 		return ks;
 	}
 
-	private TransformCollection<V,VW> values;
+	private TransformCollection<V, VW> values;
 
 	@Override
-	public TransformCollection<V,VW> values() {
-		TransformCollection<V,VW> v = values;
+	public TransformCollection<V, VW> values() {
+		TransformCollection<V, VW> v = values;
 		if(v == null) {
 			v = TransformCollection.of(getWrapped().values(), valueTransformer);
 			values = v;
@@ -154,11 +154,11 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 		return v;
 	}
 
-	private TransformSet<Entry<K,V>,Entry<KW,VW>> entrySet;
+	private TransformSet<Entry<K, V>, Entry<KW, VW>> entrySet;
 
 	@Override
-	public TransformSet<Entry<K,V>,Entry<KW,VW>> entrySet() {
-		TransformSet<Entry<K,V>,Entry<KW,VW>> es = entrySet;
+	public TransformSet<Entry<K, V>, Entry<KW, VW>> entrySet() {
+		TransformSet<Entry<K, V>, Entry<KW, VW>> es = entrySet;
 		if(es == null) {
 			es = TransformSet.of(getWrapped().entrySet(), new MapEntryTransformer<>(keyTransformer, valueTransformer));
 			entrySet = es;
@@ -169,15 +169,15 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 	/**
 	 * Wraps an entry, with optional type conversion.
 	 */
-	public static class TransformEntry<K,V,KW,VW> implements Entry<K,V> {
+	public static class TransformEntry<K, V, KW, VW> implements Entry<K, V> {
 
 		/**
 		 * Wraps a map entry.
 		 */
-		public static <K,V,KW,VW> TransformEntry<K,V,KW,VW> of(
-			Entry<KW,VW> entry,
-			Transformer<K,KW> keyTransformer,
-			Transformer<V,VW> valueTransformer
+		public static <K, V, KW, VW> TransformEntry<K, V, KW, VW> of(
+			Entry<KW, VW> entry,
+			Transformer<K, KW> keyTransformer,
+			Transformer<V, VW> valueTransformer
 		) {
 			return (entry == null) ? null : new TransformEntry<>(entry, keyTransformer, valueTransformer);
 		}
@@ -186,21 +186,21 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 		 * @see  #of(java.util.Map.Entry, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
 		 * @see  Transformer#identity()
 		 */
-		public static <K,V> TransformEntry<K,V,K,V> of(Entry<K,V> entry) {
+		public static <K, V> TransformEntry<K, V, K, V> of(Entry<K, V> entry) {
 			return of(entry, Transformer.identity(), Transformer.identity());
 		}
 
-		private final Entry<KW,VW> wrapped;
-		protected final Transformer<K,KW> keyTransformer;
-		protected final Transformer<V,VW> valueTransformer;
+		private final Entry<KW, VW> wrapped;
+		protected final Transformer<K, KW> keyTransformer;
+		protected final Transformer<V, VW> valueTransformer;
 
-		protected TransformEntry(Entry<KW,VW> wrapped, Transformer<K,KW> keyTransformer, Transformer<V,VW> valueTransformer) {
+		protected TransformEntry(Entry<KW, VW> wrapped, Transformer<K, KW> keyTransformer, Transformer<V, VW> valueTransformer) {
 			this.wrapped = wrapped;
 			this.keyTransformer = keyTransformer;
 			this.valueTransformer = valueTransformer;
 		}
 
-		protected Entry<KW,VW> getWrapped() {
+		protected Entry<KW, VW> getWrapped() {
 			return wrapped;
 		}
 
@@ -222,7 +222,7 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 		@Override
 		public boolean equals(Object o) {
 			if(!(o instanceof Entry)) return false;
-			Entry<?,?> other = (Entry<?,?>)o;
+			Entry<?, ?> other = (Entry<?, ?>)o;
 			return
 				Objects.equals(getKey(), other.getKey())
 				&& Objects.equals(getValue(), other.getValue());
@@ -238,7 +238,7 @@ public class TransformMap<K,V,KW,VW> implements Map<K,V> {
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object o) {
 		return getWrapped().equals((o instanceof Map)
-				? of((Map<Object,Object>)o, keyTransformer.invert().unbounded(), valueTransformer.invert().unbounded())
+				? of((Map<Object, Object>)o, keyTransformer.invert().unbounded(), valueTransformer.invert().unbounded())
 				: o
 		);
 	}

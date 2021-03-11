@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,12 +29,12 @@ import java.util.Deque;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformDeque<E,W> extends TransformQueue<E,W> implements Deque<E> {
+public class TransformDeque<E, W> extends TransformQueue<E, W> implements Deque<E> {
 
 	/**
 	 * Wraps a deque.
 	 */
-	public static <E,W> TransformDeque<E,W> of(Deque<W> deque, Transformer<E,W> transformer) {
+	public static <E, W> TransformDeque<E, W> of(Deque<W> deque, Transformer<E, W> transformer) {
 		return (deque == null) ? null : new TransformDeque<>(deque, transformer);
 	}
 
@@ -42,11 +42,11 @@ public class TransformDeque<E,W> extends TransformQueue<E,W> implements Deque<E>
 	 * @see  #of(java.util.Deque, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformDeque<E,E> of(Deque<E> deque) {
+	public static <E> TransformDeque<E, E> of(Deque<E> deque) {
 		return of(deque, Transformer.identity());
 	}
 
-	protected TransformDeque(Deque<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformDeque(Deque<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 
@@ -136,7 +136,7 @@ public class TransformDeque<E,W> extends TransformQueue<E,W> implements Deque<E>
 	}
 
 	@Override
-	public TransformIterator<E,W> descendingIterator() {
+	public TransformIterator<E, W> descendingIterator() {
 		return TransformIterator.of(getWrapped().descendingIterator(), transformer);
 	}
 }

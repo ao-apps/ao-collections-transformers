@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,7 +30,7 @@ import java.util.function.Consumer;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformIterable<E,W> implements Iterable<E> {
+public class TransformIterable<E, W> implements Iterable<E> {
 
 	/**
 	 * Wraps an iterable.
@@ -40,7 +40,7 @@ public class TransformIterable<E,W> implements Iterable<E> {
 	 *
 	 * @see  TransformCollection#of(java.util.Collection, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformIterable<E,W> of(Iterable<W> iterable, Transformer<E,W> transformer) {
+	public static <E, W> TransformIterable<E, W> of(Iterable<W> iterable, Transformer<E, W> transformer) {
 		if(iterable instanceof Collection) {
 			return TransformCollection.of((Collection<W>)iterable, transformer);
 		}
@@ -51,14 +51,14 @@ public class TransformIterable<E,W> implements Iterable<E> {
 	 * @see  #of(java.lang.Iterable, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformIterable<E,E> of(Iterable<E> iterable) {
+	public static <E> TransformIterable<E, E> of(Iterable<E> iterable) {
 		return of(iterable, Transformer.identity());
 	}
 
 	private final Iterable<W> wrapped;
-	protected final Transformer<E,W> transformer;
+	protected final Transformer<E, W> transformer;
 
-	protected TransformIterable(Iterable<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformIterable(Iterable<W> wrapped, Transformer<E, W> transformer) {
 		this.wrapped = wrapped;
 		this.transformer = transformer;
 	}
@@ -68,7 +68,7 @@ public class TransformIterable<E,W> implements Iterable<E> {
 	}
 
 	@Override
-	public TransformIterator<E,W> iterator() {
+	public TransformIterator<E, W> iterator() {
 		return TransformIterator.of(wrapped.iterator(), transformer);
 	}
 

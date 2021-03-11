@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,47 +30,47 @@ import java.util.Objects;
  *
  * @author  AO Industries, Inc.
  */
-public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V>,Map.Entry<KW,VW>> {
+public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<K, V>, Map.Entry<KW, VW>> {
 
 	/**
 	 * Gets a map entry transformer.
 	 */
-	public static <K,V,KW,VW> Transformer<Map.Entry<K,V>,Map.Entry<KW,VW>> of(
-		Transformer<K,KW> keyTransformer,
-		Transformer<V,VW> valueTransformer
+	public static <K, V, KW, VW> Transformer<Map.Entry<K, V>, Map.Entry<KW, VW>> of(
+		Transformer<K, KW> keyTransformer,
+		Transformer<V, VW> valueTransformer
 	) {
 		if(
 			keyTransformer == IdentityTransformer.instance
 			&& valueTransformer == IdentityTransformer.instance
 		) {
 			@SuppressWarnings("unchecked")
-			Transformer<Map.Entry<K,V>,Map.Entry<KW,VW>> identity = (Transformer)IdentityTransformer.instance;
+			Transformer<Map.Entry<K, V>, Map.Entry<KW, VW>> identity = (Transformer)IdentityTransformer.instance;
 			return identity;
 		}
 		return new MapEntryTransformer<>(keyTransformer, valueTransformer);
 	}
 
-	protected final Transformer<K,KW> keyTransformer;
-	protected final Transformer<V,VW> valueTransformer;
+	protected final Transformer<K, KW> keyTransformer;
+	protected final Transformer<V, VW> valueTransformer;
 
-	protected volatile MapEntryTransformer<KW,VW,K,V> inverted;
+	protected volatile MapEntryTransformer<KW, VW, K, V> inverted;
 
-	protected MapEntryTransformer(Transformer<K,KW> keyTransformer, Transformer<V,VW> valueTransformer) {
+	protected MapEntryTransformer(Transformer<K, KW> keyTransformer, Transformer<V, VW> valueTransformer) {
 		this.keyTransformer = keyTransformer;
 		this.valueTransformer = valueTransformer;
 	}
 
 	@Override
-	public TransformMap.TransformEntry<KW,VW,K,V> toWrapped(Map.Entry<K, V> entry) {
+	public TransformMap.TransformEntry<KW, VW, K, V> toWrapped(Map.Entry<K, V> entry) {
 		return TransformMap.TransformEntry.of(entry, keyTransformer.invert(), valueTransformer.invert());
 	}
 
 	@Override
-	public TransformMap.TransformEntry<K,V,KW,VW> fromWrapped(Map.Entry<KW, VW> entry) {
+	public TransformMap.TransformEntry<K, V, KW, VW> fromWrapped(Map.Entry<KW, VW> entry) {
 		return TransformMap.TransformEntry.of(entry, keyTransformer, valueTransformer);
 	}
 
-	private final Transformer<Object,Object> unbouned = new Transformer<Object,Object>() {
+	private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
 		/**
 		 * Unwraps the given object if is of our wrapper type.
 		 *
@@ -79,15 +79,15 @@ public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V
 		@Override
 		public Object toWrapped(Object e) {
 			if(e instanceof Map.Entry) {
-				Map.Entry<?,?> entry = (Map.Entry<?,?>)e;
+				Map.Entry<?, ?> entry = (Map.Entry<?, ?>)e;
 				Object k = entry.getKey();
 				Object v = entry.getValue();
-				Transformer<Object,Object> unboundedKeyTransformer = keyTransformer.unbounded();
-				Transformer<Object,Object> unboundedValueTransformer = valueTransformer.unbounded();
+				Transformer<Object, Object> unboundedKeyTransformer = keyTransformer.unbounded();
+				Transformer<Object, Object> unboundedValueTransformer = valueTransformer.unbounded();
 				Object kw = unboundedKeyTransformer.toWrapped(k);
 				Object vw = unboundedValueTransformer.toWrapped(v);
 				if(kw != k || vw != v) {
-					return new Map.Entry<Object,Object>() {
+					return new Map.Entry<Object, Object>() {
 						@Override
 						public Object getKey() {
 							return kw;
@@ -106,7 +106,7 @@ public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V
 						@Override
 						public boolean equals(Object o) {
 							if(!(o instanceof Map.Entry)) return false;
-							Map.Entry<?,?> other = (Map.Entry<?,?>)o;
+							Map.Entry<?, ?> other = (Map.Entry<?, ?>)o;
 							return
 								Objects.equals(kw, unboundedKeyTransformer.toWrapped(other.getKey()))
 								&& Objects.equals(vw, unboundedValueTransformer.toWrapped(other.getValue()));
@@ -130,15 +130,15 @@ public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V
 		@Override
 		public Object fromWrapped(Object w) {
 			if(w instanceof Map.Entry) {
-				Map.Entry<?,?> entry = (Map.Entry<?,?>)w;
+				Map.Entry<?, ?> entry = (Map.Entry<?, ?>)w;
 				Object kw = entry.getKey();
 				Object vw = entry.getValue();
-				Transformer<Object,Object> unboundedKeyTransformer = keyTransformer.unbounded();
-				Transformer<Object,Object> unboundedValueTransformer = valueTransformer.unbounded();
+				Transformer<Object, Object> unboundedKeyTransformer = keyTransformer.unbounded();
+				Transformer<Object, Object> unboundedValueTransformer = valueTransformer.unbounded();
 				Object k = unboundedKeyTransformer.fromWrapped(kw);
 				Object v = unboundedValueTransformer.fromWrapped(vw);
 				if(k != kw || v != vw) {
-					return new Map.Entry<Object,Object>() {
+					return new Map.Entry<Object, Object>() {
 						@Override
 						public Object getKey() {
 							return k;
@@ -157,7 +157,7 @@ public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V
 						@Override
 						public boolean equals(Object o) {
 							if(!(o instanceof Map.Entry)) return false;
-							Map.Entry<?,?> other = (Map.Entry<?,?>)o;
+							Map.Entry<?, ?> other = (Map.Entry<?, ?>)o;
 							return
 								Objects.equals(k, unboundedKeyTransformer.fromWrapped(other.getKey()))
 								&& Objects.equals(v, unboundedValueTransformer.fromWrapped(other.getValue()));
@@ -174,24 +174,24 @@ public class MapEntryTransformer<K,V,KW,VW> implements Transformer<Map.Entry<K,V
 		}
 
 		@Override
-		public Transformer<Object,Object> unbounded() {
+		public Transformer<Object, Object> unbounded() {
 			return this;
 		}
 
 		@Override
-		public Transformer<Object,Object> invert() {
+		public Transformer<Object, Object> invert() {
 			return MapEntryTransformer.this.invert().unbounded();
 		}
 	};
 
 	@Override
-	public Transformer<Object,Object> unbounded() {
+	public Transformer<Object, Object> unbounded() {
 		return unbouned;
 	}
 
 	@Override
-	public MapEntryTransformer<KW,VW,K,V> invert() {
-		MapEntryTransformer<KW,VW,K,V> i = inverted;
+	public MapEntryTransformer<KW, VW, K, V> invert() {
+		MapEntryTransformer<KW, VW, K, V> i = inverted;
 		if(i == null) {
 			i = new MapEntryTransformer<>(keyTransformer.invert(), valueTransformer.invert());
 			i.inverted = this;

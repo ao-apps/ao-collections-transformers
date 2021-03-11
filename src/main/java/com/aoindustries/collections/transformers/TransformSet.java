@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -31,7 +31,7 @@ import java.util.SortedSet;
  * @author  AO Industries, Inc.
  */
 @SuppressWarnings("EqualsAndHashcode")
-public class TransformSet<E,W> extends TransformCollection<E,W> implements Set<E> {
+public class TransformSet<E, W> extends TransformCollection<E, W> implements Set<E> {
 
 	/**
 	 * Wraps a set.
@@ -41,7 +41,7 @@ public class TransformSet<E,W> extends TransformCollection<E,W> implements Set<E
 	 *
 	 * @see  TransformSortedSet#of(java.util.SortedSet, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformSet<E,W> of(Set<W> set, Transformer<E,W> transformer) {
+	public static <E, W> TransformSet<E, W> of(Set<W> set, Transformer<E, W> transformer) {
 		if(set instanceof SortedSet) {
 			return TransformSortedSet.of((SortedSet<W>)set, transformer);
 		}
@@ -52,11 +52,11 @@ public class TransformSet<E,W> extends TransformCollection<E,W> implements Set<E
 	 * @see  #of(java.util.Set, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformSet<E,E> of(Set<E> set) {
+	public static <E> TransformSet<E, E> of(Set<E> set) {
 		return of(set, Transformer.identity());
 	}
 
-	protected TransformSet(Set<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformSet(Set<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 

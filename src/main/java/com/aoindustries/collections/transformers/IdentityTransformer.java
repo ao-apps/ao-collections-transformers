@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,7 +29,7 @@ package com.aoindustries.collections.transformers;
  *
  * @see  Transformer#identity()
  */
-class IdentityTransformer<E> implements Transformer<E,E> {
+class IdentityTransformer<E> implements Transformer<E, E> {
 
 	static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
 
@@ -47,12 +47,12 @@ class IdentityTransformer<E> implements Transformer<E,E> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public Transformer<Object,Object> unbounded() {
-		return (Transformer<Object,Object>)this;
+	public Transformer<Object, Object> unbounded() {
+		return (Transformer<Object, Object>)this;
 	}
 
 	@Override
-	public Transformer<E,E> invert() {
+	public Transformer<E, E> invert() {
 		return this;
 	}
 }

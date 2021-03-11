@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,7 +30,7 @@ import java.util.Queue;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformQueue<E,W> extends TransformCollection<E,W> implements Queue<E> {
+public class TransformQueue<E, W> extends TransformCollection<E, W> implements Queue<E> {
 
 	/**
 	 * Wraps a queue.
@@ -40,7 +40,7 @@ public class TransformQueue<E,W> extends TransformCollection<E,W> implements Que
 	 *
 	 * @see  TransformDeque#of(java.util.Deque, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformQueue<E,W> of(Queue<W> queue, Transformer<E,W> transformer) {
+	public static <E, W> TransformQueue<E, W> of(Queue<W> queue, Transformer<E, W> transformer) {
 		if(queue instanceof Deque) {
 			return TransformDeque.of((Deque<W>)queue, transformer);
 		}
@@ -51,11 +51,11 @@ public class TransformQueue<E,W> extends TransformCollection<E,W> implements Que
 	 * @see  #of(java.util.Queue, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformQueue<E,E> of(Queue<E> queue) {
+	public static <E> TransformQueue<E, E> of(Queue<E> queue) {
 		return of(queue, Transformer.identity());
 	}
 
-	protected TransformQueue(Queue<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformQueue(Queue<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 

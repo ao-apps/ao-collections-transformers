@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -34,7 +34,7 @@ import java.util.function.Predicate;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformCollection<E,W> extends TransformIterable<E,W> implements Collection<E> {
+public class TransformCollection<E, W> extends TransformIterable<E, W> implements Collection<E> {
 
 	/**
 	 * Wraps a collection.
@@ -48,7 +48,7 @@ public class TransformCollection<E,W> extends TransformIterable<E,W> implements 
 	 * @see  TransformQueue#of(java.util.Queue, com.aoindustries.collections.transformers.Transformer)
 	 * @see  TransformSet#of(java.util.Set, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformCollection<E,W> of(Collection<W> collection, Transformer<E,W> transformer) {
+	public static <E, W> TransformCollection<E, W> of(Collection<W> collection, Transformer<E, W> transformer) {
 		if(collection instanceof List) {
 			return TransformList.of((List<W>)collection, transformer);
 		}
@@ -65,11 +65,11 @@ public class TransformCollection<E,W> extends TransformIterable<E,W> implements 
 	 * @see  #of(java.util.Collection, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformCollection<E,E> of(Collection<E> collection) {
+	public static <E> TransformCollection<E, E> of(Collection<E> collection) {
 		return of(collection, Transformer.identity());
 	}
 
-	protected TransformCollection(Collection<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformCollection(Collection<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 

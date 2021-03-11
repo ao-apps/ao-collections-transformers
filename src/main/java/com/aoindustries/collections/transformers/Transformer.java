@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -33,7 +33,7 @@ import java.util.Map;
  *
  * @author  AO Industries, Inc.
  */
-public interface Transformer<E,W> {
+public interface Transformer<E, W> {
 
 	W toWrapped(E e);
 
@@ -48,12 +48,12 @@ public interface Transformer<E,W> {
 	 * <li>{@link Map#get(java.lang.Object)}</li>
 	 * </ul>
 	 */
-	Transformer<Object,Object> unbounded();
+	Transformer<Object, Object> unbounded();
 
-	Transformer<W,E> invert();
+	Transformer<W, E> invert();
 
 	@SuppressWarnings("unchecked")
-	static <E> Transformer<E,E> identity() {
-		return (Transformer<E,E>)IdentityTransformer.instance;
+	static <E> Transformer<E, E> identity() {
+		return (Transformer<E, E>)IdentityTransformer.instance;
 	}
 }

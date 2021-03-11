@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,12 +29,12 @@ import java.util.Enumeration;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformEnumeration<E,W> implements Enumeration<E> {
+public class TransformEnumeration<E, W> implements Enumeration<E> {
 
 	/**
 	 * Wraps an enumeration.
 	 */
-	public static <E,W> TransformEnumeration<E,W> of(Enumeration<W> enumeration, Transformer<E,W> transformer) {
+	public static <E, W> TransformEnumeration<E, W> of(Enumeration<W> enumeration, Transformer<E, W> transformer) {
 		return (enumeration == null) ? null : new TransformEnumeration<>(enumeration, transformer);
 	}
 
@@ -42,14 +42,14 @@ public class TransformEnumeration<E,W> implements Enumeration<E> {
 	 * @see  #of(java.util.Enumeration, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformEnumeration<E,E> of(Enumeration<E> enumeration) {
+	public static <E> TransformEnumeration<E, E> of(Enumeration<E> enumeration) {
 		return of(enumeration, Transformer.identity());
 	}
 
 	private final Enumeration<W> wrapped;
-	protected final Transformer<E,W> transformer;
+	protected final Transformer<E, W> transformer;
 
-	protected TransformEnumeration(Enumeration<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformEnumeration(Enumeration<W> wrapped, Transformer<E, W> transformer) {
 		this.wrapped = wrapped;
 		this.transformer = transformer;
 	}

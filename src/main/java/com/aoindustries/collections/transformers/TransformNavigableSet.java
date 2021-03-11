@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -29,12 +29,12 @@ import java.util.NavigableSet;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformNavigableSet<E,W> extends TransformSortedSet<E,W> implements NavigableSet<E> {
+public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implements NavigableSet<E> {
 
 	/**
 	 * Wraps a navigable set.
 	 */
-	public static <E,W> TransformNavigableSet<E,W> of(NavigableSet<W> set, Transformer<E,W> transformer) {
+	public static <E, W> TransformNavigableSet<E, W> of(NavigableSet<W> set, Transformer<E, W> transformer) {
 		return (set == null) ? null : new TransformNavigableSet<>(set, transformer);
 	}
 
@@ -42,11 +42,11 @@ public class TransformNavigableSet<E,W> extends TransformSortedSet<E,W> implemen
 	 * @see  #of(java.util.NavigableSet, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformNavigableSet<E,E> of(NavigableSet<E> set) {
+	public static <E> TransformNavigableSet<E, E> of(NavigableSet<E> set) {
 		return of(set, Transformer.identity());
 	}
 
-	protected TransformNavigableSet(NavigableSet<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformNavigableSet(NavigableSet<W> wrapped, Transformer<E, W> transformer) {
 		super(wrapped, transformer);
 	}
 
@@ -86,17 +86,17 @@ public class TransformNavigableSet<E,W> extends TransformSortedSet<E,W> implemen
 	}
 
 	@Override
-	public TransformNavigableSet<E,W> descendingSet() {
+	public TransformNavigableSet<E, W> descendingSet() {
 		return of(getWrapped().descendingSet(), transformer);
 	}
 
 	@Override
-	public TransformIterator<E,W> descendingIterator() {
+	public TransformIterator<E, W> descendingIterator() {
 		return TransformIterator.of(getWrapped().descendingIterator(), transformer);
 	}
 
 	@Override
-	public TransformNavigableSet<E,W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
+	public TransformNavigableSet<E, W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
 		return of(getWrapped().subSet(
 				transformer.toWrapped(fromElement),
 				fromInclusive,
@@ -108,7 +108,7 @@ public class TransformNavigableSet<E,W> extends TransformSortedSet<E,W> implemen
 	}
 
 	@Override
-	public TransformNavigableSet<E,W> headSet(E toElement, boolean inclusive) {
+	public TransformNavigableSet<E, W> headSet(E toElement, boolean inclusive) {
 		return of(getWrapped().headSet(
 				transformer.toWrapped(toElement),
 				inclusive
@@ -118,7 +118,7 @@ public class TransformNavigableSet<E,W> extends TransformSortedSet<E,W> implemen
 	}
 
 	@Override
-	public TransformNavigableSet<E,W> tailSet(E fromElement, boolean inclusive) {
+	public TransformNavigableSet<E, W> tailSet(E fromElement, boolean inclusive) {
 		return of(getWrapped().tailSet(
 				transformer.toWrapped(fromElement),
 				inclusive

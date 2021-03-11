@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -31,7 +31,7 @@ import java.util.function.Consumer;
  *
  * @author  AO Industries, Inc.
  */
-public class TransformIterator<E,W> implements Iterator<E> {
+public class TransformIterator<E, W> implements Iterator<E> {
 
 	/**
 	 * Wraps an iterator.
@@ -41,7 +41,7 @@ public class TransformIterator<E,W> implements Iterator<E> {
 	 *
 	 * @see  TransformListIterator#of(java.util.ListIterator, com.aoindustries.collections.transformers.Transformer)
 	 */
-	public static <E,W> TransformIterator<E,W> of(Iterator<W> iterator, Transformer<E,W> transformer) {
+	public static <E, W> TransformIterator<E, W> of(Iterator<W> iterator, Transformer<E, W> transformer) {
 		if(iterator instanceof ListIterator) {
 			return TransformListIterator.of((ListIterator<W>)iterator, transformer);
 		}
@@ -52,14 +52,14 @@ public class TransformIterator<E,W> implements Iterator<E> {
 	 * @see  #of(java.util.Iterator, com.aoindustries.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
-	public static <E> TransformIterator<E,E> of(Iterator<E> iterator) {
+	public static <E> TransformIterator<E, E> of(Iterator<E> iterator) {
 		return of(iterator, Transformer.identity());
 	}
 
 	private final Iterator<W> wrapped;
-	protected final Transformer<E,W> transformer;
+	protected final Transformer<E, W> transformer;
 
-	protected TransformIterator(Iterator<W> wrapped, Transformer<E,W> transformer) {
+	protected TransformIterator(Iterator<W> wrapped, Transformer<E, W> transformer) {
 		this.wrapped = wrapped;
 		this.transformer = transformer;
 	}

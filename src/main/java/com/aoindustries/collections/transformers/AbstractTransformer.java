@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -30,11 +30,11 @@ package com.aoindustries.collections.transformers;
  *
  * @author  AO Industries, Inc.
  */
-public abstract class AbstractTransformer<E,W> implements Transformer<E,W> {
+public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
 
 	protected final Class<E> eClass;
 	protected final Class<W> wClass;
-	protected final AbstractTransformer<W,E> inverted;
+	protected final AbstractTransformer<W, E> inverted;
 
 	/**
 	 * @param eClass The wrapper type
@@ -56,7 +56,7 @@ public abstract class AbstractTransformer<E,W> implements Transformer<E,W> {
 	AbstractTransformer(
 		Class<E> eClass,
 		Class<W> wClass,
-		AbstractTransformer<W,E> inverted
+		AbstractTransformer<W, E> inverted
 	) {
 		this.eClass = eClass;
 		this.wClass = wClass;
@@ -69,7 +69,7 @@ public abstract class AbstractTransformer<E,W> implements Transformer<E,W> {
 	@Override
 	public abstract E fromWrapped(W w);
 
-	private final Transformer<Object,Object> unbouned = new Transformer<Object,Object>() {
+	private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
 		/**
 		 * Unwraps the given object if is of our wrapper type.
 		 *
@@ -91,23 +91,23 @@ public abstract class AbstractTransformer<E,W> implements Transformer<E,W> {
 		}
 
 		@Override
-		public Transformer<Object,Object> unbounded() {
+		public Transformer<Object, Object> unbounded() {
 			return this;
 		}
 
 		@Override
-		public Transformer<Object,Object> invert() {
+		public Transformer<Object, Object> invert() {
 			return AbstractTransformer.this.invert().unbounded();
 		}
 	};
 
 	@Override
-	public Transformer<Object,Object> unbounded() {
+	public Transformer<Object, Object> unbounded() {
 		return unbouned;
 	}
 
 	@Override
-	public AbstractTransformer<W,E> invert() {
+	public AbstractTransformer<W, E> invert() {
 		return inverted;
 	}
 }
