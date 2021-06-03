@@ -1,33 +1,33 @@
-# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://github.com/aoindustries) [AO Collections](https://github.com/aoindustries/ao-collections) / [Transformers](https://github.com/aoindustries/ao-collections-transformers)
+# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://github.com/aoindustries) [AO OSS](https://github.com/aoindustries/ao-oss) / [Collections](https://github.com/aoindustries/ao-collections) / [Transformers](https://github.com/aoindustries/ao-collections-transformers)
 <p>
 	<a href="https://aoindustries.com/life-cycle#project-current-stable">
-		<img src="https://aoindustries.com/ao-badges/project-current-stable.svg" alt="project: current stable" />
+		<img src="https://oss.aoapps.com/ao-badges/project-current-stable.svg" alt="project: current stable" />
 	</a>
 	<a href="https://aoindustries.com/life-cycle#management-production">
-		<img src="https://aoindustries.com/ao-badges/management-production.svg" alt="management: production" />
+		<img src="https://oss.aoapps.com/ao-badges/management-production.svg" alt="management: production" />
 	</a>
 	<a href="https://aoindustries.com/life-cycle#packaging-active">
-		<img src="https://aoindustries.com/ao-badges/packaging-active.svg" alt="packaging: active" />
+		<img src="https://oss.aoapps.com/ao-badges/packaging-active.svg" alt="packaging: active" />
 	</a>
 	<br />
 	<a href="https://docs.oracle.com/javase/8/docs/api/">
-		<img src="https://aoindustries.com/ao-badges/java-8.svg" alt="java: &gt;= 8" />
+		<img src="https://oss.aoapps.com/ao-badges/java-8.svg" alt="java: &gt;= 8" />
 	</a>
 	<a href="http://semver.org/spec/v2.0.0.html">
-		<img src="https://aoindustries.com/ao-badges/semver-2.0.0.svg" alt="semantic versioning: 2.0.0" />
+		<img src="https://oss.aoapps.com/ao-badges/semver-2.0.0.svg" alt="semantic versioning: 2.0.0" />
 	</a>
 	<a href="https://www.gnu.org/licenses/lgpl-3.0">
-		<img src="https://aoindustries.com/ao-badges/license-lgpl-3.0.svg" alt="license: LGPL v3" />
+		<img src="https://oss.aoapps.com/ao-badges/license-lgpl-3.0.svg" alt="license: LGPL v3" />
 	</a>
 </p>
 
 Bi-directional collection transformations for Java.
 
 ## Project Links
-* [Project Home](https://aoindustries.com/ao-collections/transformers/)
-* [Changelog](https://aoindustries.com/ao-collections/transformers/changelog)
-* [API Docs](https://aoindustries.com/ao-collections/transformers/apidocs/)
-* [Maven Central Repository](https://search.maven.org/artifact/com.aoindustries/ao-collections-transformers)
+* [Project Home](https://oss.aoapps.com/collections/transformers/)
+* [Changelog](https://oss.aoapps.com/collections/transformers/changelog)
+* [API Docs](https://oss.aoapps.com/collections/transformers/apidocs/)
+* [Maven Central Repository](https://search.maven.org/artifact/com.aoapps/ao-collections-transformers)
 * [GitHub](https://github.com/aoindustries/ao-collections-transformers)
 
 ## Features
@@ -54,12 +54,12 @@ arbitrary objects as keys while maintaining map ordering). We could not simply c
 [IdentityHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/IdentityHashMap.html) and
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because they are both concrete
 implementations.  We also could not combine
-[IdentityKey](https://aoindustries.com/ao-collections/apidocs/com/aoindustries/collections/IdentityKey.html) with
+[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html) with
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because that would alter the map
 key type to be the identity-key wrapper.
 
 The solution is a bi-directional transformation through
-[IdentityKey](https://aoindustries.com/ao-collections/apidocs/com/aoindustries/collections/IdentityKey.html) on top of
+[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html) on top of
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html).  We can now add/remove objects and
 fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
 <pre>Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(

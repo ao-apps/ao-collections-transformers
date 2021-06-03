@@ -25,11 +25,11 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.aoindustries</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.0-SNAPSHOT</version>
-		<relativePath>../ao-oss-parent/pom.xml</relativePath>
+		<groupId>com.aoapps</groupId><artifactId>ao-oss-parent</artifactId><version>1.16.0-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.aoindustries</groupId><artifactId>ao-collections-transformers</artifactId><version>1.0.1-SNAPSHOT</version>
+	<groupId>com.aoapps</groupId><artifactId>ao-collections-transformers</artifactId><version>1.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<properties>
@@ -40,13 +40,13 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		<!-- This must be set in your ~/.m2/settings.xml when building with JDK < 9 -->
 		<javase.bootclasspath>${javase.bootclasspath.8}</javase.bootclasspath>
 
-		<shortTitle>Transformers</shortTitle>
-		<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://aoindustries.com/ao-collections/">AO Collections</a>
-/ <a target="${javadoc.target}" href="${project.url}">${shortTitle}</a>]]></javadoc.breadcrumbs>
+		<javadoc.breadcrumbs><![CDATA[<a target="${javadoc.target}" href="https://oss.aoapps.com/">AO OSS</a>
+/ <a target="${javadoc.target}" href="https://oss.aoapps.com/collections/">Collections</a>
+/ <a target="${javadoc.target}" href="${project.url}">Transformers</a>]]></javadoc.breadcrumbs>
 	</properties>
 
 	<name>AO Collections Transformers</name>
-	<url>https://aoindustries.com/ao-collections/transformers/</url>
+	<url>https://oss.aoapps.com/collections/transformers/</url>
 	<description>Bi-directional collection transformations for Java.</description>
 	<inceptionYear>2020</inceptionYear>
 
