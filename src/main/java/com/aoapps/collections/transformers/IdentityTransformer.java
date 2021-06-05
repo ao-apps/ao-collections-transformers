@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -20,11 +20,39 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.aoapps.collections.transformers;
 
 /**
- * Performs type conversions on-the-fly while wrapping collections.  Any elements, keys, or values that are transformed
- * must be considered as value types.
+ * Performs no type conversion.
  *
  * @author  AO Industries, Inc.
+ *
+ * @see  Transformer#identity()
  */
-package com.aoindustries.collections.transformers;
+class IdentityTransformer<E> implements Transformer<E, E> {
+
+	static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
+
+	private IdentityTransformer() {}
+
+	@Override
+	public E toWrapped(E e) {
+		return e;
+	}
+
+	@Override
+	public E fromWrapped(E w) {
+		return w;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Transformer<Object, Object> unbounded() {
+		return (Transformer<Object, Object>)this;
+	}
+
+	@Override
+	public Transformer<E, E> invert() {
+		return this;
+	}
+}

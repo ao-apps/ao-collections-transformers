@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.ListIterator;
 
@@ -39,7 +39,7 @@ public class TransformListIterator<E, W> extends TransformIterator<E, W> impleme
 	}
 
 	/**
-	 * @see  #of(java.util.ListIterator, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.ListIterator, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformListIterator<E, E> of(ListIterator<E> wrapped) {

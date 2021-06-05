@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.Map;
 import java.util.Objects;
@@ -42,7 +42,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
 	 * <li>If the given map is a {@link SortedMap}, then will return a {@link TransformSortedMap}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformSortedMap#of(java.util.SortedMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformSortedMap#of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <K, V, KW, VW> TransformMap<K, V, KW, VW> of(
 		Map<KW, VW> map,
@@ -56,7 +56,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
 	}
 
 	/**
-	 * @see  #of(java.util.Map, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.Map, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <K, V> TransformMap<K, V, K, V> of(Map<K, V> map) {
@@ -183,7 +183,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
 		}
 
 		/**
-		 * @see  #of(java.util.Map.Entry, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+		 * @see  #of(java.util.Map.Entry, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 		 * @see  Transformer#identity()
 		 */
 		public static <K, V> TransformEntry<K, V, K, V> of(Entry<K, V> entry) {

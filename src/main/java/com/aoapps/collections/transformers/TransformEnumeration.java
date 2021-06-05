@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.Enumeration;
 
@@ -39,7 +39,7 @@ public class TransformEnumeration<E, W> implements Enumeration<E> {
 	}
 
 	/**
-	 * @see  #of(java.util.Enumeration, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.Enumeration, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformEnumeration<E, E> of(Enumeration<E> enumeration) {

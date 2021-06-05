@@ -34,7 +34,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		title="@{documented.name}"
 		description="@{documented.description}"
 		datePublished="2020-11-14T18:17:19-06:00"
-		dateModified="2021-05-31T01:25:50-05:00"
+		dateModified="2021-06-03T22:53:21-05:00"
 	>
 		<core:child page="changelog.jspx" />
 		<core:child page="apidocs/index.jspx" />
@@ -92,13 +92,13 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 				<ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/IdentityHashMap.html">IdentityHashMap</ao:a> and
 				<ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because they are both concrete
 				implementations.  We also could not combine
-				<ao:a href="https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html">IdentityKey</ao:a> with
+				<ao:a href="https://oss.aoapps.com/collections/apidocs/com/aoapps/collections/IdentityKey.html">IdentityKey</ao:a> with
 				<ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because that would alter the map
 				key type to be the identity-key wrapper.
 			</p>
 			<p>
 				The solution is a bi-directional transformation through
-				<ao:a href="https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html">IdentityKey</ao:a> on top of
+				<ao:a href="https://oss.aoapps.com/collections/apidocs/com/aoapps/collections/IdentityKey.html">IdentityKey</ao:a> on top of
 				<ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a>.  We can now add/remove objects and
 				fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
 			</p>

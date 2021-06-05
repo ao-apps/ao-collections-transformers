@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.Set;
 import java.util.SortedSet;
@@ -39,7 +39,7 @@ public class TransformSet<E, W> extends TransformCollection<E, W> implements Set
 	 * <li>If the given set is a {@link SortedSet}, then will return a {@link TransformSortedSet}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformSortedSet#of(java.util.SortedSet, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformSortedSet#of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <E, W> TransformSet<E, W> of(Set<W> set, Transformer<E, W> transformer) {
 		if(set instanceof SortedSet) {
@@ -49,7 +49,7 @@ public class TransformSet<E, W> extends TransformCollection<E, W> implements Set
 	}
 
 	/**
-	 * @see  #of(java.util.Set, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.Set, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformSet<E, E> of(Set<E> set) {

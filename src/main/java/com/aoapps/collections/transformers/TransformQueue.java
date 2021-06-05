@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.Deque;
 import java.util.Queue;
@@ -38,7 +38,7 @@ public class TransformQueue<E, W> extends TransformCollection<E, W> implements Q
 	 * <li>If the given queue is a {@link Deque}, then will return a {@link TransformDeque}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformDeque#of(java.util.Deque, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformDeque#of(java.util.Deque, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <E, W> TransformQueue<E, W> of(Queue<W> queue, Transformer<E, W> transformer) {
 		if(queue instanceof Deque) {
@@ -48,7 +48,7 @@ public class TransformQueue<E, W> extends TransformCollection<E, W> implements Q
 	}
 
 	/**
-	 * @see  #of(java.util.Queue, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.Queue, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformQueue<E, E> of(Queue<E> queue) {

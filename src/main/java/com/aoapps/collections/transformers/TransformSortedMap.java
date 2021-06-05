@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.NavigableMap;
 import java.util.SortedMap;
@@ -38,7 +38,7 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 	 * <li>If the given map is a {@link NavigableMap}, then will return a {@link TransformNavigableMap}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformNavigableMap#of(java.util.NavigableMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformNavigableMap#of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <K, V, KW, VW> TransformSortedMap<K, V, KW, VW> of(
 		SortedMap<KW, VW> map,
@@ -52,7 +52,7 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 	}
 
 	/**
-	 * @see  #of(java.util.SortedMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <K, V> TransformSortedMap<K, V, K, V> of(SortedMap<K, V> map) {

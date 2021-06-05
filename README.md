@@ -54,12 +54,12 @@ arbitrary objects as keys while maintaining map ordering). We could not simply c
 [IdentityHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/IdentityHashMap.html) and
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because they are both concrete
 implementations.  We also could not combine
-[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html) with
+[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoapps/collections/IdentityKey.html) with
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because that would alter the map
 key type to be the identity-key wrapper.
 
 The solution is a bi-directional transformation through
-[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoindustries/collections/IdentityKey.html) on top of
+[IdentityKey](https://oss.aoapps.com/collections/apidocs/com/aoapps/collections/IdentityKey.html) on top of
 [LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html).  We can now add/remove objects and
 fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
 <pre>Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(

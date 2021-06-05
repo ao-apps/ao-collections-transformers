@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,9 +44,9 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
 	 * <li>If the given collection is a {@link Set}, then will return a {@link TransformSet}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformList#of(java.util.List, com.aoindustries.collections.transformers.Transformer)
-	 * @see  TransformQueue#of(java.util.Queue, com.aoindustries.collections.transformers.Transformer)
-	 * @see  TransformSet#of(java.util.Set, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformList#of(java.util.List, com.aoapps.collections.transformers.Transformer)
+	 * @see  TransformQueue#of(java.util.Queue, com.aoapps.collections.transformers.Transformer)
+	 * @see  TransformSet#of(java.util.Set, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <E, W> TransformCollection<E, W> of(Collection<W> collection, Transformer<E, W> transformer) {
 		if(collection instanceof List) {
@@ -62,7 +62,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
 	}
 
 	/**
-	 * @see  #of(java.util.Collection, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.Collection, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformCollection<E, E> of(Collection<E> collection) {

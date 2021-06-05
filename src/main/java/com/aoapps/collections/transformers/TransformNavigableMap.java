@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.NavigableMap;
 
@@ -43,7 +43,7 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
 	}
 
 	/**
-	 * @see  #of(java.util.NavigableMap, com.aoindustries.collections.transformers.Transformer, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <K, V> TransformNavigableMap<K, V, K, V> of(NavigableMap<K, V> map) {

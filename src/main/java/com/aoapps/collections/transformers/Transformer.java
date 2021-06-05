@@ -20,39 +20,40 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
- * Performs no type conversion.
+ * Performs type conversions.
+ *
+ * @param  <E>  The wrapper type
+ * @param  <W>  The wrapped type
  *
  * @author  AO Industries, Inc.
- *
- * @see  Transformer#identity()
  */
-class IdentityTransformer<E> implements Transformer<E, E> {
+public interface Transformer<E, W> {
 
-	static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
+	W toWrapped(E e);
 
-	private IdentityTransformer() {}
+	E fromWrapped(W w);
 
-	@Override
-	public E toWrapped(E e) {
-		return e;
-	}
+	/**
+	 * Gets a transformer that wraps and unwraps only when elements are of the wrapper or wrapped types, respectively.
+	 * This is useful for legacy APIs that use {@link Object} or unbounded generics, such as:
+	 * <ul>
+	 * <li>{@link Collection#contains(java.lang.Object)}</li>
+	 * <li>{@link Collection#containsAll(java.util.Collection)}</li>
+	 * <li>{@link Map#get(java.lang.Object)}</li>
+	 * </ul>
+	 */
+	Transformer<Object, Object> unbounded();
 
-	@Override
-	public E fromWrapped(E w) {
-		return w;
-	}
+	Transformer<W, E> invert();
 
-	@Override
 	@SuppressWarnings("unchecked")
-	public Transformer<Object, Object> unbounded() {
-		return (Transformer<Object, Object>)this;
-	}
-
-	@Override
-	public Transformer<E, E> invert() {
-		return this;
+	static <E> Transformer<E, E> identity() {
+		return (Transformer<E, E>)IdentityTransformer.instance;
 	}
 }

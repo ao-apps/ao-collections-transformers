@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ao-collections-transformers.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.aoindustries.collections.transformers;
+package com.aoapps.collections.transformers;
 
 import java.util.NavigableSet;
 import java.util.SortedSet;
@@ -38,7 +38,7 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 	 * <li>If the given set is a {@link NavigableSet}, then will return a {@link TransformNavigableSet}.</li>
 	 * </ol>
 	 *
-	 * @see  TransformNavigableSet#of(java.util.NavigableSet, com.aoindustries.collections.transformers.Transformer)
+	 * @see  TransformNavigableSet#of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
 	 */
 	public static <E, W> TransformSortedSet<E, W> of(SortedSet<W> set, Transformer<E, W> transformer) {
 		if(set instanceof NavigableSet) {
@@ -48,7 +48,7 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 	}
 
 	/**
-	 * @see  #of(java.util.SortedSet, com.aoindustries.collections.transformers.Transformer)
+	 * @see  #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)
 	 * @see  Transformer#identity()
 	 */
 	public static <E> TransformSortedSet<E, E> of(SortedSet<E> set) {

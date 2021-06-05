@@ -37,7 +37,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2020-11-14T18:17:19-06:00"
-		dateModified="2021-05-31T01:04:26-05:00"
+		dateModified="2021-06-03T22:53:21-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -50,6 +50,7 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 			>
 				<ul>
 					<li>Maven artifact relocated from <code>com.aoindustries:ao-collections-transformers</code> to <code>com.aoapps:ao-collections-transformers</code>.</li>
+					<li>Package renamed from <code>com.aoindustries.collections.transformers</code> to <code>com.aoapps.collections.transformers</code>.</li>
 				</ul>
 			</changelog:release>
 		</c:if>
