@@ -90,6 +90,11 @@ along with ao-collections-transformers.  If not, see <http://www.gnu.org/license
 		<url>https://github.com/aoindustries/ao-collections-transformers/issues</url>
 	</issueManagement>
 
+	<ciManagement>
+		<system>GitHub Actions</system>
+		<url>https://github.com/aoindustries/ao-collections-transformers/actions</url>
+	</ciManagement>
+
 	<repositories>
 		<!-- Repository required here, too, so can find parent -->
 		<repository>
