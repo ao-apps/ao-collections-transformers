@@ -9,6 +9,12 @@
 
 [![Build](https://github.com/aoindustries/ao-collections-transformers/workflows/Build/badge.svg?branch=master)](https://github.com/aoindustries/ao-collections-transformers/actions?query=workflow%3ABuild)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.aoapps/ao-collections-transformers/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.aoapps/ao-collections-transformers)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=alert_status)](https://sonarcloud.io/dashboard?branch=master&id=com.aoapps%3Aao-collections-transformers)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=ncloc)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-collections-transformers&metric=ncloc)  
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=reliability_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-collections-transformers&metric=Reliability)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=security_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-collections-transformers&metric=Security)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=sqale_rating)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-collections-transformers&metric=Maintainability)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?branch=master&project=com.aoapps%3Aao-collections-transformers&metric=coverage)](https://sonarcloud.io/component_measures?branch=master&id=com.aoapps%3Aao-collections-transformers&metric=Coverage)
 
 Bi-directional collection transformations for Java.
 
