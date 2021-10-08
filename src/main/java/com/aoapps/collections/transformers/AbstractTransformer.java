@@ -40,7 +40,7 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
 	 * @param eClass The wrapper type
 	 * @param wClass The wrapped type
 	 */
-	public AbstractTransformer(
+	protected AbstractTransformer(
 		Class<E> eClass,
 		Class<W> wClass
 	) {
