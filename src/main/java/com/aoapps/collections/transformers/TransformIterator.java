@@ -24,6 +24,7 @@ package com.aoapps.collections.transformers;
 
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 /**
@@ -74,7 +75,7 @@ public class TransformIterator<E, W> implements Iterator<E> {
 	}
 
 	@Override
-	public E next() {
+	public E next() throws NoSuchElementException {
 		return transformer.fromWrapped(getWrapped().next());
 	}
 

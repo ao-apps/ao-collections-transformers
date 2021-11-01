@@ -23,6 +23,7 @@
 package com.aoapps.collections.transformers;
 
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  * Wraps a {@link ListIterator}, with optional type conversion.
@@ -61,7 +62,7 @@ public class TransformListIterator<E, W> extends TransformIterator<E, W> impleme
 	}
 
 	@Override
-	public E previous() {
+	public E previous() throws NoSuchElementException {
 		return transformer.fromWrapped(getWrapped().previous());
 	}
 
