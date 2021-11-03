@@ -70,6 +70,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
 		return TransformMap.TransformEntry.of(entry, keyTransformer, valueTransformer);
 	}
 
+	// Java 9: new Transformer<>
 	private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
 		/**
 		 * Unwraps the given object if is of our wrapper type.
@@ -87,6 +88,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
 				Object kw = unboundedKeyTransformer.toWrapped(k);
 				Object vw = unboundedValueTransformer.toWrapped(v);
 				if(kw != k || vw != v) {
+					// Java 9: new Map.Entry<>
 					return new Map.Entry<Object, Object>() {
 						@Override
 						public Object getKey() {
@@ -138,6 +140,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
 				Object k = unboundedKeyTransformer.fromWrapped(kw);
 				Object v = unboundedValueTransformer.fromWrapped(vw);
 				if(k != kw || v != vw) {
+					// Java 9: new Map.Entry<>
 					return new Map.Entry<Object, Object>() {
 						@Override
 						public Object getKey() {

@@ -46,7 +46,13 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
 	) {
 		this.eClass = eClass;
 		this.wClass = wClass;
-		this.inverted = new FunctionalTransformer<>(wClass, eClass, e -> fromWrapped(e), w -> toWrapped(w), this);
+		this.inverted = new FunctionalTransformer<>(
+			wClass,
+			eClass,
+			this::fromWrapped,
+			this::toWrapped,
+			this
+		);
 	}
 
 	/**
@@ -69,6 +75,7 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
 	@Override
 	public abstract E fromWrapped(W w);
 
+	// Java 9: new Transformer<>
 	private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
 		/**
 		 * Unwraps the given object if is of our wrapper type.
