@@ -29,11 +29,13 @@ package com.aoapps.collections.transformers;
  *
  * @see  Transformer#identity()
  */
-class IdentityTransformer<E> implements Transformer<E, E> {
+final class IdentityTransformer<E> implements Transformer<E, E> {
 
 	static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
 
-	private IdentityTransformer() {}
+	private IdentityTransformer() {
+		// Do nothing
+	}
 
 	@Override
 	public E toWrapped(E e) {
