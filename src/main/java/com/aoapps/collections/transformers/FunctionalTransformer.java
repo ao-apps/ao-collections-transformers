@@ -32,51 +32,51 @@ import java.util.function.Function;
 //       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
 public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
 
-	protected final Function<? super E, ? extends W> toWrapped;
-	protected final Function<? super W, ? extends E> fromWrapped;
+  protected final Function<? super E, ? extends W> toWrapped;
+  protected final Function<? super W, ? extends E> fromWrapped;
 
-	/**
-	 * @param eClass The wrapper type
-	 * @param wClass The wrapped type
-	 * @param toWrapped Converts from wrapper to wrapped type
-	 * @param fromWrapped Converts from wrapped to wrapper type
-	 */
-	public FunctionalTransformer(
-		Class<E> eClass,
-		Class<W> wClass,
-		Function<? super E, ? extends W> toWrapped,
-		Function<? super W, ? extends E> fromWrapped
-	) {
-		super(eClass, wClass);
-		this.toWrapped = toWrapped;
-		this.fromWrapped = fromWrapped;
-	}
+  /**
+   * @param eClass The wrapper type
+   * @param wClass The wrapped type
+   * @param toWrapped Converts from wrapper to wrapped type
+   * @param fromWrapped Converts from wrapped to wrapper type
+   */
+  public FunctionalTransformer(
+    Class<E> eClass,
+    Class<W> wClass,
+    Function<? super E, ? extends W> toWrapped,
+    Function<? super W, ? extends E> fromWrapped
+  ) {
+    super(eClass, wClass);
+    this.toWrapped = toWrapped;
+    this.fromWrapped = fromWrapped;
+  }
 
-	/**
-	 * @param eClass The wrapper type
-	 * @param wClass The wrapped type
-	 * @param toWrapped Converts from wrapper to wrapped type
-	 * @param fromWrapped Converts from wrapped to wrapper type
-	 */
-	FunctionalTransformer(
-		Class<E> eClass,
-		Class<W> wClass,
-		Function<? super E, ? extends W> toWrapped,
-		Function<? super W, ? extends E> fromWrapped,
-		AbstractTransformer<W, E> inverted
-	) {
-		super(eClass, wClass, inverted);
-		this.toWrapped = toWrapped;
-		this.fromWrapped = fromWrapped;
-	}
+  /**
+   * @param eClass The wrapper type
+   * @param wClass The wrapped type
+   * @param toWrapped Converts from wrapper to wrapped type
+   * @param fromWrapped Converts from wrapped to wrapper type
+   */
+  FunctionalTransformer(
+    Class<E> eClass,
+    Class<W> wClass,
+    Function<? super E, ? extends W> toWrapped,
+    Function<? super W, ? extends E> fromWrapped,
+    AbstractTransformer<W, E> inverted
+  ) {
+    super(eClass, wClass, inverted);
+    this.toWrapped = toWrapped;
+    this.fromWrapped = fromWrapped;
+  }
 
-	@Override
-	public W toWrapped(E e) {
-		return toWrapped.apply(e);
-	}
+  @Override
+  public W toWrapped(E e) {
+    return toWrapped.apply(e);
+  }
 
-	@Override
-	public E fromWrapped(W w) {
-		return fromWrapped.apply(w);
-	}
+  @Override
+  public E fromWrapped(W w) {
+    return fromWrapped.apply(w);
+  }
 }

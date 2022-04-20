@@ -37,119 +37,119 @@ import java.util.function.UnaryOperator;
 @SuppressWarnings("EqualsAndHashcode")
 public class TransformList<E, W> extends TransformCollection<E, W> implements List<E> {
 
-	/**
-	 * Wraps a list.
-	 * <ol>
-	 * <li>If the given list implements {@link RandomAccess}, then the returned list will also implement {@link RandomAccess}.</li>
-	 * </ol>
-	 */
-	public static <E, W> TransformList<E, W> of(List<W> list, Transformer<E, W> transformer) {
-		if(list instanceof RandomAccess) {
-			return new TransformList_RandomAccess<>(list, transformer);
-		}
-		return (list == null) ? null : new TransformList<>(list, transformer);
-	}
+  /**
+   * Wraps a list.
+   * <ol>
+   * <li>If the given list implements {@link RandomAccess}, then the returned list will also implement {@link RandomAccess}.</li>
+   * </ol>
+   */
+  public static <E, W> TransformList<E, W> of(List<W> list, Transformer<E, W> transformer) {
+    if (list instanceof RandomAccess) {
+      return new TransformList_RandomAccess<>(list, transformer);
+    }
+    return (list == null) ? null : new TransformList<>(list, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.List, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformList<E, E> of(List<E> list) {
-		return of(list, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.List, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformList<E, E> of(List<E> list) {
+    return of(list, Transformer.identity());
+  }
 
-	protected TransformList(List<W> wrapped, Transformer<E, W> transformer) {
-		super(wrapped, transformer);
-	}
+  protected TransformList(List<W> wrapped, Transformer<E, W> transformer) {
+    super(wrapped, transformer);
+  }
 
-	@Override
-	protected List<W> getWrapped() {
-		return (List<W>)super.getWrapped();
-	}
+  @Override
+  protected List<W> getWrapped() {
+    return (List<W>)super.getWrapped();
+  }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean addAll(int index, Collection<? extends E> c) {
-		return getWrapped().addAll(
-			index,
-			of((Collection<E>)c, transformer.invert())
-		);
-	}
+  @Override
+  @SuppressWarnings("unchecked")
+  public boolean addAll(int index, Collection<? extends E> c) {
+    return getWrapped().addAll(
+      index,
+      of((Collection<E>)c, transformer.invert())
+    );
+  }
 
-	@Override
-	public void replaceAll(UnaryOperator<E> operator) {
-		getWrapped().replaceAll(
-			w -> transformer.toWrapped(operator.apply(transformer.fromWrapped(w)))
-		);
-	}
+  @Override
+  public void replaceAll(UnaryOperator<E> operator) {
+    getWrapped().replaceAll(
+      w -> transformer.toWrapped(operator.apply(transformer.fromWrapped(w)))
+    );
+  }
 
-	@Override
-	public void sort(Comparator<? super E> c) {
-		getWrapped().sort(
-			TransformComparator.of(c, transformer.invert())
-		);
-	}
+  @Override
+  public void sort(Comparator<? super E> c) {
+    getWrapped().sort(
+      TransformComparator.of(c, transformer.invert())
+    );
+  }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean equals(Object o) {
-		return getWrapped().equals(
-			(o instanceof List)
-				? of((List<Object>)o, transformer.invert().unbounded())
-				: o
-		);
-	}
+  @Override
+  @SuppressWarnings("unchecked")
+  public boolean equals(Object o) {
+    return getWrapped().equals(
+      (o instanceof List)
+        ? of((List<Object>)o, transformer.invert().unbounded())
+        : o
+    );
+  }
 
-	@Override
-	public E get(int index) {
-		return transformer.fromWrapped(getWrapped().get(index));
-	}
+  @Override
+  public E get(int index) {
+    return transformer.fromWrapped(getWrapped().get(index));
+  }
 
-	@Override
-	public E set(int index, E element) {
-		return transformer.fromWrapped(getWrapped().set(index, transformer.toWrapped(element)));
-	}
+  @Override
+  public E set(int index, E element) {
+    return transformer.fromWrapped(getWrapped().set(index, transformer.toWrapped(element)));
+  }
 
-	@Override
-	public void add(int index, E element) {
-		getWrapped().add(index, transformer.toWrapped(element));
-	}
+  @Override
+  public void add(int index, E element) {
+    getWrapped().add(index, transformer.toWrapped(element));
+  }
 
-	@Override
-	public E remove(int index) {
-		return transformer.fromWrapped(getWrapped().remove(index));
-	}
+  @Override
+  public E remove(int index) {
+    return transformer.fromWrapped(getWrapped().remove(index));
+  }
 
-	@Override
-	public int indexOf(Object o) {
-		return getWrapped().indexOf(transformer.unbounded().toWrapped(o));
-	}
+  @Override
+  public int indexOf(Object o) {
+    return getWrapped().indexOf(transformer.unbounded().toWrapped(o));
+  }
 
-	@Override
-	public int lastIndexOf(Object o) {
-		return getWrapped().lastIndexOf(transformer.unbounded().toWrapped(o));
-	}
+  @Override
+  public int lastIndexOf(Object o) {
+    return getWrapped().lastIndexOf(transformer.unbounded().toWrapped(o));
+  }
 
-	@Override
-	public TransformListIterator<E, W> listIterator() {
-		return TransformListIterator.of(getWrapped().listIterator(), transformer);
-	}
+  @Override
+  public TransformListIterator<E, W> listIterator() {
+    return TransformListIterator.of(getWrapped().listIterator(), transformer);
+  }
 
-	@Override
-	public TransformListIterator<E, W> listIterator(int index) {
-		return TransformListIterator.of(getWrapped().listIterator(index), transformer);
-	}
+  @Override
+  public TransformListIterator<E, W> listIterator(int index) {
+    return TransformListIterator.of(getWrapped().listIterator(index), transformer);
+  }
 
-	@Override
-	public TransformList<E, W> subList(int fromIndex, int toIndex) {
-		return of(getWrapped().subList(fromIndex, toIndex), transformer);
-	}
+  @Override
+  public TransformList<E, W> subList(int fromIndex, int toIndex) {
+    return of(getWrapped().subList(fromIndex, toIndex), transformer);
+  }
 
-	// TODO: spliterator()?
+  // TODO: spliterator()?
 
-	private static class TransformList_RandomAccess<E, W> extends TransformList<E, W> implements RandomAccess {
-		private TransformList_RandomAccess(List<W> wrapped, Transformer<E, W> transformer) {
-			super(wrapped, transformer);
-		}
-	}
+  private static class TransformList_RandomAccess<E, W> extends TransformList<E, W> implements RandomAccess {
+    private TransformList_RandomAccess(List<W> wrapped, Transformer<E, W> transformer) {
+      super(wrapped, transformer);
+    }
+  }
 }

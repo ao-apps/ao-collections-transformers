@@ -32,42 +32,42 @@ import java.util.Enumeration;
  */
 public class TransformEnumeration<E, W> implements Enumeration<E> {
 
-	/**
-	 * Wraps an enumeration.
-	 */
-	public static <E, W> TransformEnumeration<E, W> of(Enumeration<W> enumeration, Transformer<E, W> transformer) {
-		return (enumeration == null) ? null : new TransformEnumeration<>(enumeration, transformer);
-	}
+  /**
+   * Wraps an enumeration.
+   */
+  public static <E, W> TransformEnumeration<E, W> of(Enumeration<W> enumeration, Transformer<E, W> transformer) {
+    return (enumeration == null) ? null : new TransformEnumeration<>(enumeration, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.Enumeration, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformEnumeration<E, E> of(Enumeration<E> enumeration) {
-		return of(enumeration, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.Enumeration, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformEnumeration<E, E> of(Enumeration<E> enumeration) {
+    return of(enumeration, Transformer.identity());
+  }
 
-	private final Enumeration<W> wrapped;
-	protected final Transformer<E, W> transformer;
+  private final Enumeration<W> wrapped;
+  protected final Transformer<E, W> transformer;
 
-	protected TransformEnumeration(Enumeration<W> wrapped, Transformer<E, W> transformer) {
-		this.wrapped = wrapped;
-		this.transformer = transformer;
-	}
+  protected TransformEnumeration(Enumeration<W> wrapped, Transformer<E, W> transformer) {
+    this.wrapped = wrapped;
+    this.transformer = transformer;
+  }
 
-	protected Enumeration<W> getWrapped() {
-		return wrapped;
-	}
+  protected Enumeration<W> getWrapped() {
+    return wrapped;
+  }
 
-	@Override
-	public boolean hasMoreElements() {
-		return getWrapped().hasMoreElements();
-	}
+  @Override
+  public boolean hasMoreElements() {
+    return getWrapped().hasMoreElements();
+  }
 
-	@Override
-	public E nextElement() {
-		return transformer.fromWrapped(getWrapped().nextElement());
-	}
+  @Override
+  public E nextElement() {
+    return transformer.fromWrapped(getWrapped().nextElement());
+  }
 
-	// Java 9: asIterator()
+  // Java 9: asIterator()
 }

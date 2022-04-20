@@ -32,30 +32,30 @@ package com.aoapps.collections.transformers;
  */
 final class IdentityTransformer<E> implements Transformer<E, E> {
 
-	static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
+  static final IdentityTransformer<Object> instance = new IdentityTransformer<>();
 
-	private IdentityTransformer() {
-		// Do nothing
-	}
+  private IdentityTransformer() {
+    // Do nothing
+  }
 
-	@Override
-	public E toWrapped(E e) {
-		return e;
-	}
+  @Override
+  public E toWrapped(E e) {
+    return e;
+  }
 
-	@Override
-	public E fromWrapped(E w) {
-		return w;
-	}
+  @Override
+  public E fromWrapped(E w) {
+    return w;
+  }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public Transformer<Object, Object> unbounded() {
-		return (Transformer<Object, Object>)this;
-	}
+  @Override
+  @SuppressWarnings("unchecked")
+  public Transformer<Object, Object> unbounded() {
+    return (Transformer<Object, Object>)this;
+  }
 
-	@Override
-	public Transformer<E, E> invert() {
-		return this;
-	}
+  @Override
+  public Transformer<E, E> invert() {
+    return this;
+  }
 }

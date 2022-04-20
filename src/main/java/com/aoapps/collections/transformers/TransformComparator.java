@@ -32,37 +32,37 @@ import java.util.Comparator;
  */
 public class TransformComparator<T, W> implements Comparator<T> {
 
-	/**
-	 * Wraps a comparator.
-	 */
-	public static <T, W> TransformComparator<T, W> of(Comparator<? super W> comparator, Transformer<T, W> transformer) {
-		return (comparator == null) ? null : new TransformComparator<>(comparator, transformer);
-	}
+  /**
+   * Wraps a comparator.
+   */
+  public static <T, W> TransformComparator<T, W> of(Comparator<? super W> comparator, Transformer<T, W> transformer) {
+    return (comparator == null) ? null : new TransformComparator<>(comparator, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.Comparator, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <T> TransformComparator<T, T> of(Comparator<? super T> comparator) {
-		return of(comparator, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.Comparator, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <T> TransformComparator<T, T> of(Comparator<? super T> comparator) {
+    return of(comparator, Transformer.identity());
+  }
 
-	private final Comparator<? super W> wrapped;
-	protected final Transformer<T, W> transformer;
+  private final Comparator<? super W> wrapped;
+  protected final Transformer<T, W> transformer;
 
-	protected TransformComparator(Comparator<? super W> wrapped, Transformer<T, W> transformer) {
-		this.wrapped = wrapped;
-		this.transformer = transformer;
-	}
+  protected TransformComparator(Comparator<? super W> wrapped, Transformer<T, W> transformer) {
+    this.wrapped = wrapped;
+    this.transformer = transformer;
+  }
 
-	protected Comparator<? super W> getWrapped() {
-		return wrapped;
-	}
+  protected Comparator<? super W> getWrapped() {
+    return wrapped;
+  }
 
-	@Override
-	public int compare(T t1, T t2) {
-		return getWrapped().compare(transformer.toWrapped(t1),
-			transformer.toWrapped(t2)
-		);
-	}
+  @Override
+  public int compare(T t1, T t2) {
+    return getWrapped().compare(transformer.toWrapped(t1),
+      transformer.toWrapped(t2)
+    );
+  }
 }

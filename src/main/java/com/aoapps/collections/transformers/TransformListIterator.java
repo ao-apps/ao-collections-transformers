@@ -33,57 +33,57 @@ import java.util.NoSuchElementException;
  */
 public class TransformListIterator<E, W> extends TransformIterator<E, W> implements ListIterator<E> {
 
-	/**
-	 * Wraps a list iterator.
-	 */
-	public static <E, W> TransformListIterator<E, W> of(ListIterator<W> wrapped, Transformer<E, W> transformer) {
-		return (wrapped == null) ? null : new TransformListIterator<>(wrapped, transformer);
-	}
+  /**
+   * Wraps a list iterator.
+   */
+  public static <E, W> TransformListIterator<E, W> of(ListIterator<W> wrapped, Transformer<E, W> transformer) {
+    return (wrapped == null) ? null : new TransformListIterator<>(wrapped, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.ListIterator, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformListIterator<E, E> of(ListIterator<E> wrapped) {
-		return of(wrapped, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.ListIterator, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformListIterator<E, E> of(ListIterator<E> wrapped) {
+    return of(wrapped, Transformer.identity());
+  }
 
-	protected TransformListIterator(ListIterator<W> wrapped, Transformer<E, W> transformer) {
-		super(wrapped, transformer);
-	}
+  protected TransformListIterator(ListIterator<W> wrapped, Transformer<E, W> transformer) {
+    super(wrapped, transformer);
+  }
 
-	@Override
-	protected ListIterator<W> getWrapped() {
-		return (ListIterator<W>)super.getWrapped();
-	}
+  @Override
+  protected ListIterator<W> getWrapped() {
+    return (ListIterator<W>)super.getWrapped();
+  }
 
-	@Override
-	public boolean hasPrevious() {
-		return getWrapped().hasPrevious();
-	}
+  @Override
+  public boolean hasPrevious() {
+    return getWrapped().hasPrevious();
+  }
 
-	@Override
-	public E previous() throws NoSuchElementException {
-		return transformer.fromWrapped(getWrapped().previous());
-	}
+  @Override
+  public E previous() throws NoSuchElementException {
+    return transformer.fromWrapped(getWrapped().previous());
+  }
 
-	@Override
-	public int nextIndex() {
-		return getWrapped().nextIndex();
-	}
+  @Override
+  public int nextIndex() {
+    return getWrapped().nextIndex();
+  }
 
-	@Override
-	public int previousIndex() {
-		return getWrapped().previousIndex();
-	}
+  @Override
+  public int previousIndex() {
+    return getWrapped().previousIndex();
+  }
 
-	@Override
-	public void set(E e) {
-		getWrapped().set(transformer.toWrapped(e));
-	}
+  @Override
+  public void set(E e) {
+    getWrapped().set(transformer.toWrapped(e));
+  }
 
-	@Override
-	public void add(E e) {
-		getWrapped().add(transformer.toWrapped(e));
-	}
+  @Override
+  public void add(E e) {
+    getWrapped().add(transformer.toWrapped(e));
+  }
 }

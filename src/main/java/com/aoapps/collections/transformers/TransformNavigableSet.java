@@ -32,99 +32,99 @@ import java.util.NavigableSet;
  */
 public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implements NavigableSet<E> {
 
-	/**
-	 * Wraps a navigable set.
-	 */
-	public static <E, W> TransformNavigableSet<E, W> of(NavigableSet<W> set, Transformer<E, W> transformer) {
-		return (set == null) ? null : new TransformNavigableSet<>(set, transformer);
-	}
+  /**
+   * Wraps a navigable set.
+   */
+  public static <E, W> TransformNavigableSet<E, W> of(NavigableSet<W> set, Transformer<E, W> transformer) {
+    return (set == null) ? null : new TransformNavigableSet<>(set, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformNavigableSet<E, E> of(NavigableSet<E> set) {
-		return of(set, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformNavigableSet<E, E> of(NavigableSet<E> set) {
+    return of(set, Transformer.identity());
+  }
 
-	protected TransformNavigableSet(NavigableSet<W> wrapped, Transformer<E, W> transformer) {
-		super(wrapped, transformer);
-	}
+  protected TransformNavigableSet(NavigableSet<W> wrapped, Transformer<E, W> transformer) {
+    super(wrapped, transformer);
+  }
 
-	@Override
-	protected NavigableSet<W> getWrapped() {
-		return (NavigableSet<W>)super.getWrapped();
-	}
+  @Override
+  protected NavigableSet<W> getWrapped() {
+    return (NavigableSet<W>)super.getWrapped();
+  }
 
-	@Override
-	public E lower(E e) {
-		return transformer.fromWrapped(getWrapped().lower(transformer.toWrapped(e)));
-	}
+  @Override
+  public E lower(E e) {
+    return transformer.fromWrapped(getWrapped().lower(transformer.toWrapped(e)));
+  }
 
-	@Override
-	public E floor(E e) {
-		return transformer.fromWrapped(getWrapped().floor(transformer.toWrapped(e)));
-	}
+  @Override
+  public E floor(E e) {
+    return transformer.fromWrapped(getWrapped().floor(transformer.toWrapped(e)));
+  }
 
-	@Override
-	public E ceiling(E e) {
-		return transformer.fromWrapped(getWrapped().ceiling(transformer.toWrapped(e)));
-	}
+  @Override
+  public E ceiling(E e) {
+    return transformer.fromWrapped(getWrapped().ceiling(transformer.toWrapped(e)));
+  }
 
-	@Override
-	public E higher(E e) {
-		return transformer.fromWrapped(getWrapped().higher(transformer.toWrapped(e)));
-	}
+  @Override
+  public E higher(E e) {
+    return transformer.fromWrapped(getWrapped().higher(transformer.toWrapped(e)));
+  }
 
-	@Override
-	public E pollFirst() {
-		return transformer.fromWrapped(getWrapped().pollFirst());
-	}
+  @Override
+  public E pollFirst() {
+    return transformer.fromWrapped(getWrapped().pollFirst());
+  }
 
-	@Override
-	public E pollLast() {
-		return transformer.fromWrapped(getWrapped().pollLast());
-	}
+  @Override
+  public E pollLast() {
+    return transformer.fromWrapped(getWrapped().pollLast());
+  }
 
-	@Override
-	public TransformNavigableSet<E, W> descendingSet() {
-		return of(getWrapped().descendingSet(), transformer);
-	}
+  @Override
+  public TransformNavigableSet<E, W> descendingSet() {
+    return of(getWrapped().descendingSet(), transformer);
+  }
 
-	@Override
-	public TransformIterator<E, W> descendingIterator() {
-		return TransformIterator.of(getWrapped().descendingIterator(), transformer);
-	}
+  @Override
+  public TransformIterator<E, W> descendingIterator() {
+    return TransformIterator.of(getWrapped().descendingIterator(), transformer);
+  }
 
-	@Override
-	public TransformNavigableSet<E, W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
-		return of(getWrapped().subSet(
-				transformer.toWrapped(fromElement),
-				fromInclusive,
-				transformer.toWrapped(toElement),
-				toInclusive
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformNavigableSet<E, W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
+    return of(getWrapped().subSet(
+        transformer.toWrapped(fromElement),
+        fromInclusive,
+        transformer.toWrapped(toElement),
+        toInclusive
+      ),
+      transformer
+    );
+  }
 
-	@Override
-	public TransformNavigableSet<E, W> headSet(E toElement, boolean inclusive) {
-		return of(getWrapped().headSet(
-				transformer.toWrapped(toElement),
-				inclusive
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformNavigableSet<E, W> headSet(E toElement, boolean inclusive) {
+    return of(getWrapped().headSet(
+        transformer.toWrapped(toElement),
+        inclusive
+      ),
+      transformer
+    );
+  }
 
-	@Override
-	public TransformNavigableSet<E, W> tailSet(E fromElement, boolean inclusive) {
-		return of(getWrapped().tailSet(
-				transformer.toWrapped(fromElement),
-				inclusive
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformNavigableSet<E, W> tailSet(E fromElement, boolean inclusive) {
+    return of(getWrapped().tailSet(
+        transformer.toWrapped(fromElement),
+        inclusive
+      ),
+      transformer
+    );
+  }
 }

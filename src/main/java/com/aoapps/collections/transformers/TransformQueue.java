@@ -33,60 +33,60 @@ import java.util.Queue;
  */
 public class TransformQueue<E, W> extends TransformCollection<E, W> implements Queue<E> {
 
-	/**
-	 * Wraps a queue.
-	 * <ol>
-	 * <li>If the given queue is a {@link Deque}, then will return a {@link TransformDeque}.</li>
-	 * </ol>
-	 *
-	 * @see  TransformDeque#of(java.util.Deque, com.aoapps.collections.transformers.Transformer)
-	 */
-	public static <E, W> TransformQueue<E, W> of(Queue<W> queue, Transformer<E, W> transformer) {
-		if(queue instanceof Deque) {
-			return TransformDeque.of((Deque<W>)queue, transformer);
-		}
-		return (queue == null) ? null : new TransformQueue<>(queue, transformer);
-	}
+  /**
+   * Wraps a queue.
+   * <ol>
+   * <li>If the given queue is a {@link Deque}, then will return a {@link TransformDeque}.</li>
+   * </ol>
+   *
+   * @see  TransformDeque#of(java.util.Deque, com.aoapps.collections.transformers.Transformer)
+   */
+  public static <E, W> TransformQueue<E, W> of(Queue<W> queue, Transformer<E, W> transformer) {
+    if (queue instanceof Deque) {
+      return TransformDeque.of((Deque<W>)queue, transformer);
+    }
+    return (queue == null) ? null : new TransformQueue<>(queue, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.Queue, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformQueue<E, E> of(Queue<E> queue) {
-		return of(queue, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.Queue, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformQueue<E, E> of(Queue<E> queue) {
+    return of(queue, Transformer.identity());
+  }
 
-	protected TransformQueue(Queue<W> wrapped, Transformer<E, W> transformer) {
-		super(wrapped, transformer);
-	}
+  protected TransformQueue(Queue<W> wrapped, Transformer<E, W> transformer) {
+    super(wrapped, transformer);
+  }
 
-	@Override
-	protected Queue<W> getWrapped() {
-		return (Queue<W>)super.getWrapped();
-	}
+  @Override
+  protected Queue<W> getWrapped() {
+    return (Queue<W>)super.getWrapped();
+  }
 
-	@Override
-	public boolean offer(E e) {
-		return getWrapped().offer(transformer.toWrapped(e));
-	}
+  @Override
+  public boolean offer(E e) {
+    return getWrapped().offer(transformer.toWrapped(e));
+  }
 
-	@Override
-	public E remove() {
-		return transformer.fromWrapped(getWrapped().remove());
-	}
+  @Override
+  public E remove() {
+    return transformer.fromWrapped(getWrapped().remove());
+  }
 
-	@Override
-	public E poll() {
-		return transformer.fromWrapped(getWrapped().poll());
-	}
+  @Override
+  public E poll() {
+    return transformer.fromWrapped(getWrapped().poll());
+  }
 
-	@Override
-	public E element() {
-		return transformer.fromWrapped(getWrapped().element());
-	}
+  @Override
+  public E element() {
+    return transformer.fromWrapped(getWrapped().element());
+  }
 
-	@Override
-	public E peek() {
-		return transformer.fromWrapped(getWrapped().peek());
-	}
+  @Override
+  public E peek() {
+    return transformer.fromWrapped(getWrapped().peek());
+  }
 }

@@ -36,25 +36,25 @@ import java.util.Map;
  */
 public interface Transformer<E, W> {
 
-	W toWrapped(E e);
+  W toWrapped(E e);
 
-	E fromWrapped(W w);
+  E fromWrapped(W w);
 
-	/**
-	 * Gets a transformer that wraps and unwraps only when elements are of the wrapper or wrapped types, respectively.
-	 * This is useful for legacy APIs that use {@link Object} or unbounded generics, such as:
-	 * <ul>
-	 * <li>{@link Collection#contains(java.lang.Object)}</li>
-	 * <li>{@link Collection#containsAll(java.util.Collection)}</li>
-	 * <li>{@link Map#get(java.lang.Object)}</li>
-	 * </ul>
-	 */
-	Transformer<Object, Object> unbounded();
+  /**
+   * Gets a transformer that wraps and unwraps only when elements are of the wrapper or wrapped types, respectively.
+   * This is useful for legacy APIs that use {@link Object} or unbounded generics, such as:
+   * <ul>
+   * <li>{@link Collection#contains(java.lang.Object)}</li>
+   * <li>{@link Collection#containsAll(java.util.Collection)}</li>
+   * <li>{@link Map#get(java.lang.Object)}</li>
+   * </ul>
+   */
+  Transformer<Object, Object> unbounded();
 
-	Transformer<W, E> invert();
+  Transformer<W, E> invert();
 
-	@SuppressWarnings("unchecked")
-	static <E> Transformer<E, E> identity() {
-		return (Transformer<E, E>)IdentityTransformer.instance;
-	}
+  @SuppressWarnings("unchecked")
+  static <E> Transformer<E, E> identity() {
+    return (Transformer<E, E>)IdentityTransformer.instance;
+  }
 }

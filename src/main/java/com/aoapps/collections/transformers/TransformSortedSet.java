@@ -33,87 +33,87 @@ import java.util.SortedSet;
  */
 public class TransformSortedSet<E, W> extends TransformSet<E, W> implements SortedSet<E> {
 
-	/**
-	 * Wraps a sorted set.
-	 * <ol>
-	 * <li>If the given set is a {@link NavigableSet}, then will return a {@link TransformNavigableSet}.</li>
-	 * </ol>
-	 *
-	 * @see  TransformNavigableSet#of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
-	 */
-	public static <E, W> TransformSortedSet<E, W> of(SortedSet<W> set, Transformer<E, W> transformer) {
-		if(set instanceof NavigableSet) {
-			return TransformNavigableSet.of((NavigableSet<W>)set, transformer);
-		}
-		return (set == null) ? null : new TransformSortedSet<>(set, transformer);
-	}
+  /**
+   * Wraps a sorted set.
+   * <ol>
+   * <li>If the given set is a {@link NavigableSet}, then will return a {@link TransformNavigableSet}.</li>
+   * </ol>
+   *
+   * @see  TransformNavigableSet#of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
+   */
+  public static <E, W> TransformSortedSet<E, W> of(SortedSet<W> set, Transformer<E, W> transformer) {
+    if (set instanceof NavigableSet) {
+      return TransformNavigableSet.of((NavigableSet<W>)set, transformer);
+    }
+    return (set == null) ? null : new TransformSortedSet<>(set, transformer);
+  }
 
-	/**
-	 * @see  #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)
-	 * @see  Transformer#identity()
-	 */
-	public static <E> TransformSortedSet<E, E> of(SortedSet<E> set) {
-		return of(set, Transformer.identity());
-	}
+  /**
+   * @see  #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)
+   * @see  Transformer#identity()
+   */
+  public static <E> TransformSortedSet<E, E> of(SortedSet<E> set) {
+    return of(set, Transformer.identity());
+  }
 
-	protected TransformSortedSet(SortedSet<W> wrapped, Transformer<E, W> transformer) {
-		super(wrapped, transformer);
-	}
+  protected TransformSortedSet(SortedSet<W> wrapped, Transformer<E, W> transformer) {
+    super(wrapped, transformer);
+  }
 
-	@Override
-	protected SortedSet<W> getWrapped() {
-		return (SortedSet<W>)super.getWrapped();
-	}
+  @Override
+  protected SortedSet<W> getWrapped() {
+    return (SortedSet<W>)super.getWrapped();
+  }
 
-	private TransformComparator<E, W> comparator;
+  private TransformComparator<E, W> comparator;
 
-	@Override
-	public TransformComparator<E, W> comparator() {
-		TransformComparator<E, W> c = comparator;
-		if(c == null) {
-			c = TransformComparator.of(getWrapped().comparator(), transformer);
-			comparator = c;
-		}
-		return c;
-	}
+  @Override
+  public TransformComparator<E, W> comparator() {
+    TransformComparator<E, W> c = comparator;
+    if (c == null) {
+      c = TransformComparator.of(getWrapped().comparator(), transformer);
+      comparator = c;
+    }
+    return c;
+  }
 
-	@Override
-	public TransformSortedSet<E, W> subSet(E fromElement, E toElement) {
-		return of(getWrapped().subSet(
-				transformer.toWrapped(fromElement),
-				transformer.toWrapped(toElement)
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformSortedSet<E, W> subSet(E fromElement, E toElement) {
+    return of(getWrapped().subSet(
+        transformer.toWrapped(fromElement),
+        transformer.toWrapped(toElement)
+      ),
+      transformer
+    );
+  }
 
-	@Override
-	public TransformSortedSet<E, W> headSet(E toElement) {
-		return of(getWrapped().headSet(
-				transformer.toWrapped(toElement)
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformSortedSet<E, W> headSet(E toElement) {
+    return of(getWrapped().headSet(
+        transformer.toWrapped(toElement)
+      ),
+      transformer
+    );
+  }
 
-	@Override
-	public TransformSortedSet<E, W> tailSet(E fromElement) {
-		return of(getWrapped().tailSet(
-				transformer.toWrapped(fromElement)
-			),
-			transformer
-		);
-	}
+  @Override
+  public TransformSortedSet<E, W> tailSet(E fromElement) {
+    return of(getWrapped().tailSet(
+        transformer.toWrapped(fromElement)
+      ),
+      transformer
+    );
+  }
 
-	@Override
-	public E first() {
-		return transformer.fromWrapped(getWrapped().first());
-	}
+  @Override
+  public E first() {
+    return transformer.fromWrapped(getWrapped().first());
+  }
 
-	@Override
-	public E last() {
-		return transformer.fromWrapped(getWrapped().last());
-	}
+  @Override
+  public E last() {
+    return transformer.fromWrapped(getWrapped().last());
+  }
 
-	// TODO: spliterator()?
+  // TODO: spliterator()?
 }
