@@ -42,12 +42,12 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
    * @see  TransformNavigableMap#of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
    */
   public static <K, V, KW, VW> TransformSortedMap<K, V, KW, VW> of(
-    SortedMap<KW, VW> map,
-    Transformer<K, KW> keyTransformer,
-    Transformer<V, VW> valueTransformer
+      SortedMap<KW, VW> map,
+      Transformer<K, KW> keyTransformer,
+      Transformer<V, VW> valueTransformer
   ) {
     if (map instanceof NavigableMap) {
-      return TransformNavigableMap.of((NavigableMap<KW, VW>)map, keyTransformer, valueTransformer);
+      return TransformNavigableMap.of((NavigableMap<KW, VW>) map, keyTransformer, valueTransformer);
     }
     return (map == null) ? null : new TransformSortedMap<>(map, keyTransformer, valueTransformer);
   }
@@ -66,7 +66,7 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 
   @Override
   protected SortedMap<KW, VW> getWrapped() {
-    return (SortedMap<KW, VW>)super.getWrapped();
+    return (SortedMap<KW, VW>) super.getWrapped();
   }
 
   private TransformComparator<K, KW> comparator;
@@ -84,31 +84,31 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
   @Override
   public TransformSortedMap<K, V, KW, VW> subMap(K fromKey, K toKey) {
     return of(getWrapped().subMap(
-        keyTransformer.toWrapped(fromKey),
-        keyTransformer.toWrapped(toKey)
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(fromKey),
+            keyTransformer.toWrapped(toKey)
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformSortedMap<K, V, KW, VW> headMap(K toKey) {
     return of(getWrapped().headMap(
-        keyTransformer.toWrapped(toKey)
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(toKey)
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformSortedMap<K, V, KW, VW> tailMap(K fromKey) {
     return of(getWrapped().tailMap(
-        keyTransformer.toWrapped(fromKey)
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(fromKey)
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 

@@ -62,7 +62,7 @@ public class TransformComparator<T, W> implements Comparator<T> {
   @Override
   public int compare(T t1, T t2) {
     return getWrapped().compare(transformer.toWrapped(t1),
-      transformer.toWrapped(t2)
+        transformer.toWrapped(t2)
     );
   }
 }

@@ -46,12 +46,12 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
    * @see  TransformSortedMap#of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
    */
   public static <K, V, KW, VW> TransformMap<K, V, KW, VW> of(
-    Map<KW, VW> map,
-    Transformer<K, KW> keyTransformer,
-    Transformer<V, VW> valueTransformer
+      Map<KW, VW> map,
+      Transformer<K, KW> keyTransformer,
+      Transformer<V, VW> valueTransformer
   ) {
     if (map instanceof SortedMap) {
-      return TransformSortedMap.of((SortedMap<KW, VW>)map, keyTransformer, valueTransformer);
+      return TransformSortedMap.of((SortedMap<KW, VW>) map, keyTransformer, valueTransformer);
     }
     return (map == null) ? null : new TransformMap<>(map, keyTransformer, valueTransformer);
   }
@@ -109,7 +109,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   public V put(K key, V value) {
     return valueTransformer.fromWrapped(getWrapped().put(keyTransformer.toWrapped(key),
         valueTransformer.toWrapped(value)
-      )
+    )
     );
   }
 
@@ -122,7 +122,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   @Override
   @SuppressWarnings("unchecked")
   public void putAll(Map<? extends K, ? extends V> m) {
-    getWrapped().putAll(of((Map<K, V>)m, keyTransformer.invert(), valueTransformer.invert())
+    getWrapped().putAll(of((Map<K, V>) m, keyTransformer.invert(), valueTransformer.invert())
     );
   }
 
@@ -176,9 +176,9 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
      * Wraps a map entry.
      */
     public static <K, V, KW, VW> TransformEntry<K, V, KW, VW> of(
-      Entry<KW, VW> entry,
-      Transformer<K, KW> keyTransformer,
-      Transformer<V, VW> valueTransformer
+        Entry<KW, VW> entry,
+        Transformer<K, KW> keyTransformer,
+        Transformer<V, VW> valueTransformer
     ) {
       return (entry == null) ? null : new TransformEntry<>(entry, keyTransformer, valueTransformer);
     }
@@ -225,10 +225,10 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
       if (!(o instanceof Entry)) {
         return false;
       }
-      Entry<?, ?> other = (Entry<?, ?>)o;
+      Entry<?, ?> other = (Entry<?, ?>) o;
       return
-        Objects.equals(getKey(), other.getKey())
-        && Objects.equals(getValue(), other.getValue());
+          Objects.equals(getKey(), other.getKey())
+              && Objects.equals(getValue(), other.getValue());
     }
 
     @Override
@@ -241,7 +241,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   @SuppressWarnings("unchecked")
   public boolean equals(Object o) {
     return getWrapped().equals((o instanceof Map)
-        ? of((Map<Object, Object>)o, keyTransformer.invert().unbounded(), valueTransformer.invert().unbounded())
+        ? of((Map<Object, Object>) o, keyTransformer.invert().unbounded(), valueTransformer.invert().unbounded())
         : o
     );
   }
@@ -255,26 +255,26 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   public V getOrDefault(Object key, V defaultValue) {
     return valueTransformer.fromWrapped(getWrapped().getOrDefault(keyTransformer.unbounded().toWrapped(key),
         valueTransformer.toWrapped(defaultValue)
-      )
+    )
     );
   }
 
   @Override
   public void forEach(BiConsumer<? super K, ? super V> action) {
     getWrapped().forEach((kw, vw) ->
-      action.accept(keyTransformer.fromWrapped(kw),
-        valueTransformer.fromWrapped(vw)
-      )
+        action.accept(keyTransformer.fromWrapped(kw),
+            valueTransformer.fromWrapped(vw)
+        )
     );
   }
 
   @Override
   public void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
     getWrapped().replaceAll((kw, vw) ->
-      valueTransformer.toWrapped(function.apply(keyTransformer.fromWrapped(kw),
-          valueTransformer.fromWrapped(vw)
+        valueTransformer.toWrapped(function.apply(keyTransformer.fromWrapped(kw),
+            valueTransformer.fromWrapped(vw)
         )
-      )
+        )
     );
   }
 
@@ -282,22 +282,22 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   public V putIfAbsent(K key, V value) {
     return valueTransformer.fromWrapped(getWrapped().putIfAbsent(keyTransformer.toWrapped(key),
         valueTransformer.toWrapped(value)
-      )
+    )
     );
   }
 
   @Override
   public boolean remove(Object key, Object value) {
     return getWrapped().remove(keyTransformer.unbounded().toWrapped(key),
-      valueTransformer.unbounded().toWrapped(value)
+        valueTransformer.unbounded().toWrapped(value)
     );
   }
 
   @Override
   public boolean replace(K key, V oldValue, V newValue) {
     return getWrapped().replace(keyTransformer.toWrapped(key),
-      valueTransformer.toWrapped(oldValue),
-      valueTransformer.toWrapped(newValue)
+        valueTransformer.toWrapped(oldValue),
+        valueTransformer.toWrapped(newValue)
     );
   }
 
@@ -305,7 +305,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   public V replace(K key, V value) {
     return valueTransformer.fromWrapped(getWrapped().replace(keyTransformer.toWrapped(key),
         valueTransformer.toWrapped(value)
-      )
+    )
     );
   }
 
@@ -313,9 +313,9 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   public V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
     return valueTransformer.fromWrapped(getWrapped().computeIfAbsent(keyTransformer.toWrapped(key),
         kw -> valueTransformer.toWrapped(mappingFunction.apply(keyTransformer.fromWrapped(kw)
-          )
         )
-      )
+        )
+    )
     );
   }
 
@@ -324,9 +324,9 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
     return valueTransformer.fromWrapped(getWrapped().computeIfPresent(keyTransformer.toWrapped(key),
         (kw, vw) -> valueTransformer.toWrapped(remappingFunction.apply(keyTransformer.fromWrapped(kw),
             valueTransformer.fromWrapped(vw)
-          )
         )
-      )
+        )
+    )
     );
   }
 
@@ -335,9 +335,9 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
     return valueTransformer.fromWrapped(getWrapped().compute(keyTransformer.toWrapped(key),
         (kw, vw) -> valueTransformer.toWrapped(remappingFunction.apply(keyTransformer.fromWrapped(kw),
             valueTransformer.fromWrapped(vw)
-          )
         )
-      )
+        )
+    )
     );
   }
 
@@ -347,9 +347,9 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
         valueTransformer.toWrapped(value),
         (oldVW, vw) -> valueTransformer.toWrapped(remappingFunction.apply(valueTransformer.fromWrapped(oldVW),
             valueTransformer.fromWrapped(vw)
-          )
         )
-      )
+        )
+    )
     );
   }
 }

@@ -43,7 +43,7 @@ public class TransformQueue<E, W> extends TransformCollection<E, W> implements Q
    */
   public static <E, W> TransformQueue<E, W> of(Queue<W> queue, Transformer<E, W> transformer) {
     if (queue instanceof Deque) {
-      return TransformDeque.of((Deque<W>)queue, transformer);
+      return TransformDeque.of((Deque<W>) queue, transformer);
     }
     return (queue == null) ? null : new TransformQueue<>(queue, transformer);
   }
@@ -62,7 +62,7 @@ public class TransformQueue<E, W> extends TransformCollection<E, W> implements Q
 
   @Override
   protected Queue<W> getWrapped() {
-    return (Queue<W>)super.getWrapped();
+    return (Queue<W>) super.getWrapped();
   }
 
   @Override

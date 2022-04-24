@@ -42,10 +42,10 @@ public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
    * @param fromWrapped Converts from wrapped to wrapper type
    */
   public FunctionalTransformer(
-    Class<E> eClass,
-    Class<W> wClass,
-    Function<? super E, ? extends W> toWrapped,
-    Function<? super W, ? extends E> fromWrapped
+      Class<E> eClass,
+      Class<W> wClass,
+      Function<? super E, ? extends W> toWrapped,
+      Function<? super W, ? extends E> fromWrapped
   ) {
     super(eClass, wClass);
     this.toWrapped = toWrapped;
@@ -59,11 +59,11 @@ public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
    * @param fromWrapped Converts from wrapped to wrapper type
    */
   FunctionalTransformer(
-    Class<E> eClass,
-    Class<W> wClass,
-    Function<? super E, ? extends W> toWrapped,
-    Function<? super W, ? extends E> fromWrapped,
-    AbstractTransformer<W, E> inverted
+      Class<E> eClass,
+      Class<W> wClass,
+      Function<? super E, ? extends W> toWrapped,
+      Function<? super W, ? extends E> fromWrapped,
+      AbstractTransformer<W, E> inverted
   ) {
     super(eClass, wClass, inverted);
     this.toWrapped = toWrapped;

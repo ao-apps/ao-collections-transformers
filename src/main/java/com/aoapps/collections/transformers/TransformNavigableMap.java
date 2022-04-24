@@ -36,9 +36,9 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
    * Wraps a navigable map.
    */
   public static <K, V, KW, VW> TransformNavigableMap<K, V, KW, VW> of(
-    NavigableMap<KW, VW> map,
-    Transformer<K, KW> keyTransformer,
-    Transformer<V, VW> valueTransformer
+      NavigableMap<KW, VW> map,
+      Transformer<K, KW> keyTransformer,
+      Transformer<V, VW> valueTransformer
   ) {
     return (map == null) ? null : new TransformNavigableMap<>(map, keyTransformer, valueTransformer);
   }
@@ -57,14 +57,14 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
 
   @Override
   protected NavigableMap<KW, VW> getWrapped() {
-    return (NavigableMap<KW, VW>)super.getWrapped();
+    return (NavigableMap<KW, VW>) super.getWrapped();
   }
 
   @Override
   public TransformEntry<K, V, KW, VW> lowerEntry(K key) {
     return TransformEntry.of(getWrapped().lowerEntry(keyTransformer.toWrapped(key)),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
@@ -76,8 +76,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   @Override
   public TransformEntry<K, V, KW, VW> floorEntry(K key) {
     return TransformEntry.of(getWrapped().floorEntry(keyTransformer.toWrapped(key)),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
@@ -89,8 +89,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   @Override
   public TransformEntry<K, V, KW, VW> ceilingEntry(K key) {
     return TransformEntry.of(getWrapped().ceilingEntry(keyTransformer.toWrapped(key)),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
@@ -102,8 +102,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   @Override
   public TransformEntry<K, V, KW, VW> higherEntry(K key) {
     return TransformEntry.of(getWrapped().higherEntry(keyTransformer.toWrapped(key)),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
@@ -115,89 +115,89 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   @Override
   public TransformEntry<K, V, KW, VW> firstEntry() {
     return TransformEntry.of(getWrapped().firstEntry(),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformEntry<K, V, KW, VW> lastEntry() {
     return TransformEntry.of(getWrapped().lastEntry(),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformEntry<K, V, KW, VW> pollFirstEntry() {
     return TransformEntry.of(getWrapped().pollFirstEntry(),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformEntry<K, V, KW, VW> pollLastEntry() {
     return TransformEntry.of(getWrapped().pollLastEntry(),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> descendingMap() {
     return of(getWrapped().descendingMap(),
-      keyTransformer,
-      valueTransformer
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformNavigableSet<K, KW> navigableKeySet() {
     return TransformNavigableSet.of(getWrapped().navigableKeySet(),
-      keyTransformer
+        keyTransformer
     );
   }
 
   @Override
   public TransformNavigableSet<K, KW> descendingKeySet() {
     return TransformNavigableSet.of(getWrapped().descendingKeySet(),
-      keyTransformer
+        keyTransformer
     );
   }
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
     return of(getWrapped().subMap(
-        keyTransformer.toWrapped(fromKey),
-        fromInclusive,
-        keyTransformer.toWrapped(toKey),
-        toInclusive
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(fromKey),
+            fromInclusive,
+            keyTransformer.toWrapped(toKey),
+            toInclusive
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> headMap(K toKey, boolean inclusive) {
     return of(getWrapped().headMap(
-        keyTransformer.toWrapped(toKey),
-        inclusive
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(toKey),
+            inclusive
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> tailMap(K fromKey, boolean inclusive) {
     return of(getWrapped().tailMap(
-        keyTransformer.toWrapped(fromKey),
-        inclusive
-      ),
-      keyTransformer,
-      valueTransformer
+            keyTransformer.toWrapped(fromKey),
+            inclusive
+        ),
+        keyTransformer,
+        valueTransformer
     );
   }
 }

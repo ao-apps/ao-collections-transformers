@@ -42,17 +42,17 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
    * @param wClass The wrapped type
    */
   protected AbstractTransformer(
-    Class<E> eClass,
-    Class<W> wClass
+      Class<E> eClass,
+      Class<W> wClass
   ) {
     this.eClass = eClass;
     this.wClass = wClass;
     this.inverted = new FunctionalTransformer<>(
-      wClass,
-      eClass,
-      this::fromWrapped,
-      this::toWrapped,
-      this
+        wClass,
+        eClass,
+        this::fromWrapped,
+        this::toWrapped,
+        this
     );
   }
 
@@ -61,9 +61,9 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
    * @param wClass The wrapped type
    */
   AbstractTransformer(
-    Class<E> eClass,
-    Class<W> wClass,
-    AbstractTransformer<W, E> inverted
+      Class<E> eClass,
+      Class<W> wClass,
+      AbstractTransformer<W, E> inverted
   ) {
     this.eClass = eClass;
     this.wClass = wClass;

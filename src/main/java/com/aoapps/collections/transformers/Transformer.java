@@ -55,6 +55,6 @@ public interface Transformer<E, W> {
 
   @SuppressWarnings("unchecked")
   static <E> Transformer<E, E> identity() {
-    return (Transformer<E, E>)IdentityTransformer.instance;
+    return (Transformer<E, E>) IdentityTransformer.instance;
   }
 }

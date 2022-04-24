@@ -53,7 +53,7 @@ public class TransformDeque<E, W> extends TransformQueue<E, W> implements Deque<
 
   @Override
   protected Deque<W> getWrapped() {
-    return (Deque<W>)super.getWrapped();
+    return (Deque<W>) super.getWrapped();
   }
 
   @Override

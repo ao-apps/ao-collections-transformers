@@ -51,7 +51,7 @@ final class IdentityTransformer<E> implements Transformer<E, E> {
   @Override
   @SuppressWarnings("unchecked")
   public Transformer<Object, Object> unbounded() {
-    return (Transformer<Object, Object>)this;
+    return (Transformer<Object, Object>) this;
   }
 
   @Override

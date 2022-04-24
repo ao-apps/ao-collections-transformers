@@ -64,29 +64,29 @@ public class TransformList<E, W> extends TransformCollection<E, W> implements Li
 
   @Override
   protected List<W> getWrapped() {
-    return (List<W>)super.getWrapped();
+    return (List<W>) super.getWrapped();
   }
 
   @Override
   @SuppressWarnings("unchecked")
   public boolean addAll(int index, Collection<? extends E> c) {
     return getWrapped().addAll(
-      index,
-      of((Collection<E>)c, transformer.invert())
+        index,
+        of((Collection<E>) c, transformer.invert())
     );
   }
 
   @Override
   public void replaceAll(UnaryOperator<E> operator) {
     getWrapped().replaceAll(
-      w -> transformer.toWrapped(operator.apply(transformer.fromWrapped(w)))
+        w -> transformer.toWrapped(operator.apply(transformer.fromWrapped(w)))
     );
   }
 
   @Override
   public void sort(Comparator<? super E> c) {
     getWrapped().sort(
-      TransformComparator.of(c, transformer.invert())
+        TransformComparator.of(c, transformer.invert())
     );
   }
 
@@ -94,9 +94,9 @@ public class TransformList<E, W> extends TransformCollection<E, W> implements Li
   @SuppressWarnings("unchecked")
   public boolean equals(Object o) {
     return getWrapped().equals(
-      (o instanceof List)
-        ? of((List<Object>)o, transformer.invert().unbounded())
-        : o
+        (o instanceof List)
+            ? of((List<Object>) o, transformer.invert().unbounded())
+            : o
     );
   }
 

@@ -45,7 +45,7 @@ public class TransformIterator<E, W> implements Iterator<E> {
    */
   public static <E, W> TransformIterator<E, W> of(Iterator<W> iterator, Transformer<E, W> transformer) {
     if (iterator instanceof ListIterator) {
-      return TransformListIterator.of((ListIterator<W>)iterator, transformer);
+      return TransformListIterator.of((ListIterator<W>) iterator, transformer);
     }
     return (iterator == null) ? null : new TransformIterator<>(iterator, transformer);
   }

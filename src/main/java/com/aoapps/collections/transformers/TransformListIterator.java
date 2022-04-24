@@ -54,7 +54,7 @@ public class TransformListIterator<E, W> extends TransformIterator<E, W> impleme
 
   @Override
   protected ListIterator<W> getWrapped() {
-    return (ListIterator<W>)super.getWrapped();
+    return (ListIterator<W>) super.getWrapped();
   }
 
   @Override

@@ -43,7 +43,7 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
    */
   public static <E, W> TransformSortedSet<E, W> of(SortedSet<W> set, Transformer<E, W> transformer) {
     if (set instanceof NavigableSet) {
-      return TransformNavigableSet.of((NavigableSet<W>)set, transformer);
+      return TransformNavigableSet.of((NavigableSet<W>) set, transformer);
     }
     return (set == null) ? null : new TransformSortedSet<>(set, transformer);
   }
@@ -62,7 +62,7 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 
   @Override
   protected SortedSet<W> getWrapped() {
-    return (SortedSet<W>)super.getWrapped();
+    return (SortedSet<W>) super.getWrapped();
   }
 
   private TransformComparator<E, W> comparator;
@@ -80,28 +80,28 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
   @Override
   public TransformSortedSet<E, W> subSet(E fromElement, E toElement) {
     return of(getWrapped().subSet(
-        transformer.toWrapped(fromElement),
-        transformer.toWrapped(toElement)
-      ),
-      transformer
+            transformer.toWrapped(fromElement),
+            transformer.toWrapped(toElement)
+        ),
+        transformer
     );
   }
 
   @Override
   public TransformSortedSet<E, W> headSet(E toElement) {
     return of(getWrapped().headSet(
-        transformer.toWrapped(toElement)
-      ),
-      transformer
+            transformer.toWrapped(toElement)
+        ),
+        transformer
     );
   }
 
   @Override
   public TransformSortedSet<E, W> tailSet(E fromElement) {
     return of(getWrapped().tailSet(
-        transformer.toWrapped(fromElement)
-      ),
-      transformer
+            transformer.toWrapped(fromElement)
+        ),
+        transformer
     );
   }
 

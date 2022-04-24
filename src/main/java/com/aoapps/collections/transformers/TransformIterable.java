@@ -43,7 +43,7 @@ public class TransformIterable<E, W> implements Iterable<E> {
    */
   public static <E, W> TransformIterable<E, W> of(Iterable<W> iterable, Transformer<E, W> transformer) {
     if (iterable instanceof Collection) {
-      return TransformCollection.of((Collection<W>)iterable, transformer);
+      return TransformCollection.of((Collection<W>) iterable, transformer);
     }
     return (iterable == null) ? null : new TransformIterable<>(iterable, transformer);
   }

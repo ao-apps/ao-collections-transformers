@@ -53,7 +53,7 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
 
   @Override
   protected NavigableSet<W> getWrapped() {
-    return (NavigableSet<W>)super.getWrapped();
+    return (NavigableSet<W>) super.getWrapped();
   }
 
   @Override
@@ -99,32 +99,32 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
   @Override
   public TransformNavigableSet<E, W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
     return of(getWrapped().subSet(
-        transformer.toWrapped(fromElement),
-        fromInclusive,
-        transformer.toWrapped(toElement),
-        toInclusive
-      ),
-      transformer
+            transformer.toWrapped(fromElement),
+            fromInclusive,
+            transformer.toWrapped(toElement),
+            toInclusive
+        ),
+        transformer
     );
   }
 
   @Override
   public TransformNavigableSet<E, W> headSet(E toElement, boolean inclusive) {
     return of(getWrapped().headSet(
-        transformer.toWrapped(toElement),
-        inclusive
-      ),
-      transformer
+            transformer.toWrapped(toElement),
+            inclusive
+        ),
+        transformer
     );
   }
 
   @Override
   public TransformNavigableSet<E, W> tailSet(E fromElement, boolean inclusive) {
     return of(getWrapped().tailSet(
-        transformer.toWrapped(fromElement),
-        inclusive
-      ),
-      transformer
+            transformer.toWrapped(fromElement),
+            inclusive
+        ),
+        transformer
     );
   }
 }

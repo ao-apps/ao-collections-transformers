@@ -44,7 +44,7 @@ public class TransformSet<E, W> extends TransformCollection<E, W> implements Set
    */
   public static <E, W> TransformSet<E, W> of(Set<W> set, Transformer<E, W> transformer) {
     if (set instanceof SortedSet) {
-      return TransformSortedSet.of((SortedSet<W>)set, transformer);
+      return TransformSortedSet.of((SortedSet<W>) set, transformer);
     }
     return (set == null) ? null : new TransformSet<>(set, transformer);
   }
@@ -63,16 +63,16 @@ public class TransformSet<E, W> extends TransformCollection<E, W> implements Set
 
   @Override
   protected Set<W> getWrapped() {
-    return (Set<W>)super.getWrapped();
+    return (Set<W>) super.getWrapped();
   }
 
   @Override
   @SuppressWarnings("unchecked")
   public boolean equals(Object o) {
     return getWrapped().equals(
-      (o instanceof Set)
-        ? of((Set<Object>)o, transformer.invert().unbounded())
-        : o
+        (o instanceof Set)
+            ? of((Set<Object>) o, transformer.invert().unbounded())
+            : o
     );
   }
 

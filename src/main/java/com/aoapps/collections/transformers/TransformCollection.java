@@ -51,13 +51,13 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
    */
   public static <E, W> TransformCollection<E, W> of(Collection<W> collection, Transformer<E, W> transformer) {
     if (collection instanceof List) {
-      return TransformList.of((List<W>)collection, transformer);
+      return TransformList.of((List<W>) collection, transformer);
     }
     if (collection instanceof Queue) {
-      return TransformQueue.of((Queue<W>)collection, transformer);
+      return TransformQueue.of((Queue<W>) collection, transformer);
     }
     if (collection instanceof Set) {
-      return TransformSet.of((Set<W>)collection, transformer);
+      return TransformSet.of((Set<W>) collection, transformer);
     }
     return (collection == null) ? null : new TransformCollection<>(collection, transformer);
   }
@@ -76,7 +76,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
 
   @Override
   protected Collection<W> getWrapped() {
-    return (Collection<W>)super.getWrapped();
+    return (Collection<W>) super.getWrapped();
   }
 
   @Override
@@ -125,7 +125,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   @SuppressWarnings("unchecked")
   public boolean containsAll(Collection<?> c) {
     return getWrapped().containsAll(
-      of((Collection<Object>)c, transformer.invert().unbounded())
+        of((Collection<Object>) c, transformer.invert().unbounded())
     );
   }
 
@@ -133,7 +133,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   @SuppressWarnings("unchecked")
   public boolean addAll(Collection<? extends E> c) {
     return getWrapped().addAll(
-      of((Collection<E>)c, transformer.invert())
+        of((Collection<E>) c, transformer.invert())
     );
   }
 
@@ -141,7 +141,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   @SuppressWarnings("unchecked")
   public boolean removeAll(Collection<?> c) {
     return getWrapped().removeAll(
-      of((Collection<Object>)c, transformer.invert().unbounded())
+        of((Collection<Object>) c, transformer.invert().unbounded())
     );
   }
 
@@ -154,7 +154,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   @SuppressWarnings("unchecked")
   public boolean retainAll(Collection<?> c) {
     return getWrapped().retainAll(
-      of((Collection<Object>)c, transformer.invert().unbounded())
+        of((Collection<Object>) c, transformer.invert().unbounded())
     );
   }
 
@@ -167,9 +167,9 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   @SuppressWarnings("unchecked")
   public boolean equals(Object o) {
     return getWrapped().equals(
-      (o instanceof Collection)
-        ? of((Collection<Object>)o, transformer.invert().unbounded())
-        : o
+        (o instanceof Collection)
+            ? of((Collection<Object>) o, transformer.invert().unbounded())
+            : o
     );
   }
 
