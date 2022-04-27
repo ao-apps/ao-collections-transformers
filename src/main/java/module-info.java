@@ -22,4 +22,4 @@
  */
 module com.aoapps.collections.transformers {
   exports com.aoapps.collections.transformers;
-}
+} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
