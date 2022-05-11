@@ -41,7 +41,8 @@ public class TransformListIterator<E, W> extends TransformIterator<E, W> impleme
   }
 
   /**
-   * @see  #of(java.util.ListIterator, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.ListIterator, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformListIterator<E, E> of(ListIterator<E> wrapped) {

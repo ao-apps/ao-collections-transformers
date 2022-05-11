@@ -53,7 +53,8 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
   }
 
   /**
-   * @see  #of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <K, V> TransformSortedMap<K, V, K, V> of(SortedMap<K, V> map) {
@@ -83,7 +84,8 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 
   @Override
   public TransformSortedMap<K, V, KW, VW> subMap(K fromKey, K toKey) {
-    return of(getWrapped().subMap(
+    return of(
+        getWrapped().subMap(
             keyTransformer.toWrapped(fromKey),
             keyTransformer.toWrapped(toKey)
         ),
@@ -94,7 +96,8 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 
   @Override
   public TransformSortedMap<K, V, KW, VW> headMap(K toKey) {
-    return of(getWrapped().headMap(
+    return of(
+        getWrapped().headMap(
             keyTransformer.toWrapped(toKey)
         ),
         keyTransformer,
@@ -104,7 +107,8 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
 
   @Override
   public TransformSortedMap<K, V, KW, VW> tailMap(K fromKey) {
-    return of(getWrapped().tailMap(
+    return of(
+        getWrapped().tailMap(
             keyTransformer.toWrapped(fromKey)
         ),
         keyTransformer,

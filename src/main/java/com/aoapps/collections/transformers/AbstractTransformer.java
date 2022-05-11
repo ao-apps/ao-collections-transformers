@@ -38,6 +38,8 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
   protected final AbstractTransformer<W, E> inverted;
 
   /**
+   * Creates a new type converter.
+   *
    * @param eClass The wrapper type
    * @param wClass The wrapped type
    */
@@ -57,6 +59,8 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
   }
 
   /**
+   * Creates a new type converter.
+   *
    * @param eClass The wrapper type
    * @param wClass The wrapped type
    */

@@ -40,7 +40,8 @@ public class TransformComparator<T, W> implements Comparator<T> {
   }
 
   /**
-   * @see  #of(java.util.Comparator, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.Comparator, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <T> TransformComparator<T, T> of(Comparator<? super T> comparator) {

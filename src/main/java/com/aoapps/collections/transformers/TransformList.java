@@ -45,13 +45,14 @@ public class TransformList<E, W> extends TransformCollection<E, W> implements Li
    */
   public static <E, W> TransformList<E, W> of(List<W> list, Transformer<E, W> transformer) {
     if (list instanceof RandomAccess) {
-      return new TransformList_RandomAccess<>(list, transformer);
+      return new RandomAccessTransformList<>(list, transformer);
     }
     return (list == null) ? null : new TransformList<>(list, transformer);
   }
 
   /**
-   * @see  #of(java.util.List, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.List, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformList<E, E> of(List<E> list) {
@@ -147,8 +148,8 @@ public class TransformList<E, W> extends TransformCollection<E, W> implements Li
 
   // TODO: spliterator()?
 
-  private static class TransformList_RandomAccess<E, W> extends TransformList<E, W> implements RandomAccess {
-    private TransformList_RandomAccess(List<W> wrapped, Transformer<E, W> transformer) {
+  private static class RandomAccessTransformList<E, W> extends TransformList<E, W> implements RandomAccess {
+    private RandomAccessTransformList(List<W> wrapped, Transformer<E, W> transformer) {
       super(wrapped, transformer);
     }
   }

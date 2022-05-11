@@ -44,7 +44,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   }
 
   /**
-   * @see  #of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <K, V> TransformNavigableMap<K, V, K, V> of(NavigableMap<K, V> map) {
@@ -168,7 +169,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
-    return of(getWrapped().subMap(
+    return of(
+        getWrapped().subMap(
             keyTransformer.toWrapped(fromKey),
             fromInclusive,
             keyTransformer.toWrapped(toKey),
@@ -181,7 +183,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> headMap(K toKey, boolean inclusive) {
-    return of(getWrapped().headMap(
+    return of(
+        getWrapped().headMap(
             keyTransformer.toWrapped(toKey),
             inclusive
         ),
@@ -192,7 +195,8 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
 
   @Override
   public TransformNavigableMap<K, V, KW, VW> tailMap(K fromKey, boolean inclusive) {
-    return of(getWrapped().tailMap(
+    return of(
+        getWrapped().tailMap(
             keyTransformer.toWrapped(fromKey),
             inclusive
         ),

@@ -40,7 +40,8 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
   }
 
   /**
-   * @see  #of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformNavigableSet<E, E> of(NavigableSet<E> set) {
@@ -98,7 +99,8 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
 
   @Override
   public TransformNavigableSet<E, W> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
-    return of(getWrapped().subSet(
+    return of(
+        getWrapped().subSet(
             transformer.toWrapped(fromElement),
             fromInclusive,
             transformer.toWrapped(toElement),
@@ -110,7 +112,8 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
 
   @Override
   public TransformNavigableSet<E, W> headSet(E toElement, boolean inclusive) {
-    return of(getWrapped().headSet(
+    return of(
+        getWrapped().headSet(
             transformer.toWrapped(toElement),
             inclusive
         ),
@@ -120,7 +123,8 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
 
   @Override
   public TransformNavigableSet<E, W> tailSet(E fromElement, boolean inclusive) {
-    return of(getWrapped().tailSet(
+    return of(
+        getWrapped().tailSet(
             transformer.toWrapped(fromElement),
             inclusive
         ),

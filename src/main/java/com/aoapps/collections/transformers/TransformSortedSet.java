@@ -49,7 +49,8 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
   }
 
   /**
-   * @see  #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformSortedSet<E, E> of(SortedSet<E> set) {
@@ -79,7 +80,8 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 
   @Override
   public TransformSortedSet<E, W> subSet(E fromElement, E toElement) {
-    return of(getWrapped().subSet(
+    return of(
+        getWrapped().subSet(
             transformer.toWrapped(fromElement),
             transformer.toWrapped(toElement)
         ),
@@ -89,7 +91,8 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 
   @Override
   public TransformSortedSet<E, W> headSet(E toElement) {
-    return of(getWrapped().headSet(
+    return of(
+        getWrapped().headSet(
             transformer.toWrapped(toElement)
         ),
         transformer
@@ -98,7 +101,8 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
 
   @Override
   public TransformSortedSet<E, W> tailSet(E fromElement) {
-    return of(getWrapped().tailSet(
+    return of(
+        getWrapped().tailSet(
             transformer.toWrapped(fromElement)
         ),
         transformer

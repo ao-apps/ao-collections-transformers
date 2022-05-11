@@ -51,7 +51,8 @@ public class TransformIterator<E, W> implements Iterator<E> {
   }
 
   /**
-   * @see  #of(java.util.Iterator, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.Iterator, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformIterator<E, E> of(Iterator<E> iterator) {

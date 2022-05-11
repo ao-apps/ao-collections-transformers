@@ -40,7 +40,8 @@ public class TransformEnumeration<E, W> implements Enumeration<E> {
   }
 
   /**
-   * @see  #of(java.util.Enumeration, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.Enumeration, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformEnumeration<E, E> of(Enumeration<E> enumeration) {

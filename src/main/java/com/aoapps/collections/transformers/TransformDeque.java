@@ -40,7 +40,8 @@ public class TransformDeque<E, W> extends TransformQueue<E, W> implements Deque<
   }
 
   /**
-   * @see  #of(java.util.Deque, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.Deque, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformDeque<E, E> of(Deque<E> deque) {

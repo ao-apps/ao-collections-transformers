@@ -50,7 +50,8 @@ public class TransformSet<E, W> extends TransformCollection<E, W> implements Set
   }
 
   /**
-   * @see  #of(java.util.Set, com.aoapps.collections.transformers.Transformer)
+   * See {@link #of(java.util.Set, com.aoapps.collections.transformers.Transformer)}.
+   *
    * @see  Transformer#identity()
    */
   public static <E> TransformSet<E, E> of(Set<E> set) {

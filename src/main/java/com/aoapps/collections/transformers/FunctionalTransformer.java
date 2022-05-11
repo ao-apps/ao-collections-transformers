@@ -26,16 +26,22 @@ package com.aoapps.collections.transformers;
 import java.util.function.Function;
 
 /**
+ * A functional transformer performs bi-directional conversion via provided reciprocal {@linkplain Function functions}.
+ * <p>
+ * TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
+ *       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
+ * </p>
+ *
  * @author  AO Industries, Inc.
  */
-// TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
-//       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
 public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
 
   protected final Function<? super E, ? extends W> toWrapped;
   protected final Function<? super W, ? extends E> fromWrapped;
 
   /**
+   * Creates a new bi-directional functional transformer.
+   *
    * @param eClass The wrapper type
    * @param wClass The wrapped type
    * @param toWrapped Converts from wrapper to wrapped type
@@ -53,6 +59,8 @@ public class FunctionalTransformer<E, W> extends AbstractTransformer<E, W> {
   }
 
   /**
+   * Creates a new bi-directional functional transformer.
+   *
    * @param eClass The wrapper type
    * @param wClass The wrapped type
    * @param toWrapped Converts from wrapper to wrapped type
