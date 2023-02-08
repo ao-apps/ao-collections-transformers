@@ -33,6 +33,7 @@ along with ao-collections-transformers.  If not, see <https://www.gnu.org/licens
   <packaging>bundle</packaging>
 
   <properties>
+    <project.build.outputTimestamp>2023-02-08T21:06:04Z</project.build.outputTimestamp>
     <module.name>com.aoapps.collections.transformers.book</module.name>
     <!-- These values are copied from the project being documented -->
     <documented.artifactId>ao-collections-transformers</documented.artifactId>
