@@ -22,7 +22,7 @@ Bi-directional collection transformations for Java.
 * [Project Home](https://oss.aoapps.com/collections/transformers/)
 * [Changelog](https://oss.aoapps.com/collections/transformers/changelog)
 * [API Docs](https://oss.aoapps.com/collections/transformers/apidocs/)
-* [Maven Central Repository](https://search.maven.org/artifact/com.aoapps/ao-collections-transformers)
+* [Maven Central Repository](https://central.sonatype.com/search?namespace=com.aoapps&q=a%3Aao-collections-transformers)
 * [GitHub](https://github.com/ao-apps/ao-collections-transformers)
 
 ## Features
