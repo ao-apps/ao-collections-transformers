@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,10 +27,9 @@ import java.util.function.Function;
 
 /**
  * A functional transformer performs bi-directional conversion via provided reciprocal {@linkplain Function functions}.
- * <p>
- * TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
- *       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).
- * </p>
+ *
+ * <p>TODO: Add a one-way transformer that uses a single function and does not support inversion (and would thus fail most/all modifications)?
+ *       This would provide for a one-way wrapper behavior similar to other one-way wrapper-based transformers (such as Guava).</p>
  *
  * @author  AO Industries, Inc.
  */
