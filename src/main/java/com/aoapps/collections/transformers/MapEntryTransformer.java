@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -71,8 +71,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
     return TransformMap.TransformEntry.of(entry, keyTransformer, valueTransformer);
   }
 
-  // Java 9: new Transformer<>
-  private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
+  private final Transformer<Object, Object> unbouned = new Transformer<>() {
     /**
      * Unwraps the given object if is of our wrapper type.
      *
@@ -89,8 +88,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
         Object kw = unboundedKeyTransformer.toWrapped(k);
         Object vw = unboundedValueTransformer.toWrapped(v);
         if (kw != k || vw != v) {
-          // Java 9: new Map.Entry<>
-          return new Map.Entry<Object, Object>() {
+          return new Map.Entry<>() {
             @Override
             public Object getKey() {
               return kw;
@@ -143,8 +141,7 @@ public class MapEntryTransformer<K, V, KW, VW> implements Transformer<Map.Entry<
         Object k = unboundedKeyTransformer.fromWrapped(kw);
         Object v = unboundedValueTransformer.fromWrapped(vw);
         if (k != kw || v != vw) {
-          // Java 9: new Map.Entry<>
-          return new Map.Entry<Object, Object>() {
+          return new Map.Entry<>() {
             @Override
             public Object getKey() {
               return k;

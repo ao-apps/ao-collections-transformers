@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -80,8 +80,7 @@ public abstract class AbstractTransformer<E, W> implements Transformer<E, W> {
   @Override
   public abstract E fromWrapped(W w);
 
-  // Java 9: new Transformer<>
-  private final Transformer<Object, Object> unbouned = new Transformer<Object, Object>() {
+  private final Transformer<Object, Object> unbouned = new Transformer<>() {
     /**
      * Unwraps the given object if is of our wrapper type.
      *

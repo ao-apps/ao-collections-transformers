@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
 /**
@@ -110,7 +111,14 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
     return list.toArray(a);
   }
 
-  // Java 11: toArray(IntFunction<T[]> generator)
+  @Override
+  public <T> T[] toArray(IntFunction<T[]> generator) {
+    List<E> list = new ArrayList<>(size());
+    for (W w : getWrapped()) {
+      list.add(transformer.fromWrapped(w));
+    }
+    return list.toArray(generator);
+  }
 
   @Override
   public boolean add(E e) {

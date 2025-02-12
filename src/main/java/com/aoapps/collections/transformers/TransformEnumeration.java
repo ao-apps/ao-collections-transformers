@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2025  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -24,6 +24,7 @@
 package com.aoapps.collections.transformers;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 
 /**
  * Wraps an {@link Enumeration}, with optional type conversion.
@@ -70,5 +71,17 @@ public class TransformEnumeration<E, W> implements Enumeration<E> {
     return transformer.fromWrapped(getWrapped().nextElement());
   }
 
-  // Java 9: asIterator()
+  @Override
+  public Iterator<E> asIterator() {
+    Iterator<W> iter = getWrapped().asIterator();
+    return new Iterator<>() {
+      @Override public boolean hasNext() {
+        return iter.hasNext();
+      }
+
+      @Override public E next() {
+        return transformer.fromWrapped(iter.next());
+      }
+    };
+  }
 }
