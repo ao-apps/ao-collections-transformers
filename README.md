@@ -3,7 +3,7 @@
 [![project: current stable](https://oss.aoapps.com/ao-badges/project-current-stable.svg)](https://aoindustries.com/life-cycle#project-current-stable)
 [![management: production](https://oss.aoapps.com/ao-badges/management-production.svg)](https://aoindustries.com/life-cycle#management-production)
 [![packaging: active](https://oss.aoapps.com/ao-badges/packaging-active.svg)](https://aoindustries.com/life-cycle#packaging-active)  
-[![java: &gt;= 8](https://oss.aoapps.com/ao-badges/java-8.svg)](https://docs.oracle.com/javase/8/)
+[![java: &gt;= 11](https://oss.aoapps.com/ao-badges/java-11.svg)](https://docs.oracle.com/en/java/javase/11/docs/api/)
 [![semantic versioning: 2.0.0](https://oss.aoapps.com/ao-badges/semver-2.0.0.svg)](https://semver.org/spec/v2.0.0.html)
 [![license: LGPL v3](https://oss.aoapps.com/ao-badges/license-lgpl-3.0.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
@@ -46,16 +46,16 @@ collections in new ways.
 ## Example
 For example, our specific motivation to develop this API was the desire to have a linked map with identity keys (use
 arbitrary objects as keys while maintaining map ordering). We could not simply combine
-[IdentityHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/IdentityHashMap.html) and
-[LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because they are both concrete
+[IdentityHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/docs/api/java/util/IdentityHashMap.html) and
+[LinkedHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/docs/api/java/util/LinkedHashMap.html) because they are both concrete
 implementations.  We also could not combine
 [IdentityKey](https://oss.aoapps.com/collections/apidocs/com.aoapps.collections/com/aoapps/collections/IdentityKey.html) with
-[LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) because that would alter the map
+[LinkedHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/docs/api/java/util/LinkedHashMap.html) because that would alter the map
 key type to be the identity-key wrapper.
 
 The solution is a bi-directional transformation through
 [IdentityKey](https://oss.aoapps.com/collections/apidocs/com.aoapps.collections/com/aoapps/collections/IdentityKey.html) on top of
-[LinkedHashMap](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html).  We can now add/remove objects and
+[LinkedHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/docs/api/java/util/LinkedHashMap.html).  We can now add/remove objects and
 fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
 <pre>Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(
   new LinkedHashMap&lt;&gt;(),
