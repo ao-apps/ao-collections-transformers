@@ -49,7 +49,7 @@ public class TransformQueue<E, W> extends TransformCollection<E, W> implements Q
   }
 
   /**
-   * See {@link #of(java.util.Queue, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformQueue#of(java.util.Queue, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

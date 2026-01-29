@@ -51,7 +51,7 @@ public class TransformList<E, W> extends TransformCollection<E, W> implements Li
   }
 
   /**
-   * See {@link #of(java.util.List, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformList#of(java.util.List, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

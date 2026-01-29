@@ -53,7 +53,7 @@ public class TransformSortedMap<K, V, KW, VW> extends TransformMap<K, V, KW, VW>
   }
 
   /**
-   * See {@link #of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformSortedMap#of(java.util.SortedMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

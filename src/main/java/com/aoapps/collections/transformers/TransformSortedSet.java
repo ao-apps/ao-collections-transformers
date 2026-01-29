@@ -49,7 +49,7 @@ public class TransformSortedSet<E, W> extends TransformSet<E, W> implements Sort
   }
 
   /**
-   * See {@link #of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformSortedSet#of(java.util.SortedSet, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

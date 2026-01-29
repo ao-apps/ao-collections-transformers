@@ -44,7 +44,7 @@ public class TransformNavigableMap<K, V, KW, VW> extends TransformSortedMap<K, V
   }
 
   /**
-   * See {@link #of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformNavigableMap#of(java.util.NavigableMap, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

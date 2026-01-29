@@ -64,7 +64,7 @@ public class TransformCollection<E, W> extends TransformIterable<E, W> implement
   }
 
   /**
-   * See {@link #of(java.util.Collection, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformCollection#of(java.util.Collection, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

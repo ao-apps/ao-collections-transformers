@@ -49,7 +49,7 @@ public class TransformIterable<E, W> implements Iterable<E> {
   }
 
   /**
-   * See {@link #of(java.lang.Iterable, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformIterable#of(java.lang.Iterable, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

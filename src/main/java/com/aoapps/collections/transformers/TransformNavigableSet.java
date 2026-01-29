@@ -40,7 +40,7 @@ public class TransformNavigableSet<E, W> extends TransformSortedSet<E, W> implem
   }
 
   /**
-   * See {@link #of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformNavigableSet#of(java.util.NavigableSet, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */

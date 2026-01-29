@@ -57,7 +57,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
   }
 
   /**
-   * See {@link #of(java.util.Map, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+   * See {@link TransformMap#of(java.util.Map, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
    *
    * @see  Transformer#identity()
    */
@@ -185,7 +185,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
     }
 
     /**
-     * See {@link #of(java.util.Map.Entry, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
+     * See {@link TransformEntry#of(java.util.Map.Entry, com.aoapps.collections.transformers.Transformer, com.aoapps.collections.transformers.Transformer)}.
      *
      * @see  Transformer#identity()
      */
