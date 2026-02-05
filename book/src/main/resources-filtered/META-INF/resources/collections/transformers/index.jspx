@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-collections-transformers - Bi-directional collection transformations for Java.
-Copyright (C) 2020, 2021, 2022, 2023, 2025  AO Industries, Inc.
+Copyright (C) 2020, 2021, 2022, 2023, 2025, 2026  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -34,7 +34,7 @@ along with ao-collections-transformers.  If not, see <https://www.gnu.org/licens
     title="@{documented.name}"
     description="@{documented.description}"
     datePublished="2020-11-14T18:17:19-06:00"
-    dateModified="2025-07-02T23:05:45Z"
+    dateModified="2026-02-05T18:09:30Z"
   >
     <core:child page="changelog.jspx" />
     <core:child page="apidocs/index.jspx" />
@@ -101,17 +101,17 @@ along with ao-collections-transformers.  If not, see <https://www.gnu.org/licens
       <p>
         For example, our specific motivation to develop this API was the desire to have a linked map with identity keys (use
         arbitrary objects as keys while maintaining map ordering). We could not simply combine
-        <ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/IdentityHashMap.html">IdentityHashMap</ao:a> and
-        <ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because they are both concrete
+        <ao:a rel="nofollow" href="@{javadoc.link.javase}java.base/java/util/IdentityHashMap.html">IdentityHashMap</ao:a> and
+        <ao:a rel="nofollow" href="@{javadoc.link.javase}java.base/java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because they are both concrete
         implementations.  We also could not combine
         <ao:a href="https://oss.aoapps.com/collections/apidocs/com.aoapps.collections/com/aoapps/collections/IdentityKey.html">IdentityKey</ao:a> with
-        <ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because that would alter the map
+        <ao:a rel="nofollow" href="@{javadoc.link.javase}java.base/java/util/LinkedHashMap.html">LinkedHashMap</ao:a> because that would alter the map
         key type to be the identity-key wrapper.
       </p>
       <p>
         The solution is a bi-directional transformation through
         <ao:a href="https://oss.aoapps.com/collections/apidocs/com.aoapps.collections/com/aoapps/collections/IdentityKey.html">IdentityKey</ao:a> on top of
-        <ao:a rel="nofollow" href="@{javadoc.link.javase}java/util/LinkedHashMap.html">LinkedHashMap</ao:a>.  We can now add/remove objects and
+        <ao:a rel="nofollow" href="@{javadoc.link.javase}java.base/java/util/LinkedHashMap.html">LinkedHashMap</ao:a>.  We can now add/remove objects and
         fully interact with the map with the identity-key wrapping performed on-the-fly behind-the-scenes:
       </p>
 <pre><![CDATA[Map&lt;SomeKeyType, ?&gt; map = TransformMap.of(
