@@ -1,6 +1,6 @@
 /*
  * ao-collections-transformers - Bi-directional collection transformations for Java.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2026  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -132,7 +132,7 @@ public class TransformMap<K, V, KW, VW> implements Map<K, V> {
     getWrapped().clear();
   }
 
-  private TransformSet<K, KW> keySet;
+  private TransformSet<K, KW> keySet; // TODO: AtomicReference?  What is our thread safety guarantee?  Check rest of library.
 
   @Override
   public TransformSet<K, KW> keySet() {
